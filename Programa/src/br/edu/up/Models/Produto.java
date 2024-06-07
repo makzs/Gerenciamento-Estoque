@@ -16,6 +16,10 @@ public class Produto extends BaseEntity {
         this.fornecedor = fornecedor;
     }
 
+    public String toCSV(){
+        return super.Id + ";" + nome + ";" + preco + ";" + quantidade + ";" + fornecedor;
+    }
+
     public int getId() {
         return id;
     }
