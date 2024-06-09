@@ -81,7 +81,7 @@ public class Menu {
                 System.out.println("Opção invalida!");
                 break;
         }
-
+        leitor.close();
     }
 
     public Cliente pedirDadosCliente() {
