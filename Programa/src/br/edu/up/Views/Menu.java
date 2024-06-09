@@ -48,9 +48,9 @@ public class Menu {
 
     }
 
-    public void MenuCliente(){
+    public void MenuCliente() {
         Scanner leitor = new Scanner(System.in);
-        
+
         System.out.println("---------------------------");
         System.out.println("    MENU CLIENTE  ");
         System.out.println("---------------------------");
@@ -68,22 +68,23 @@ public class Menu {
                 clienteController.adicionarCliente(novoCliente);
                 break;
             case 2:
-                // remover cliente
+                System.out.println("Informe o ID que do cliente que deseja remover:");
+                int idInformado = leitor.nextInt();
+                removerCliente(idInformado);
                 break;
             case 3:
                 clienteController.carregarClientesDoArquivo();
                 clienteController.listarClientes();
                 break;
-            
+
             default:
                 System.out.println("Opção invalida!");
                 break;
         }
 
-
     }
 
-    public Cliente pedirDadosCliente(){
+    public Cliente pedirDadosCliente() {
         leitor.nextLine();
         System.out.println("Informe o cpf:");
         String cpf = leitor.nextLine();
@@ -98,10 +99,16 @@ public class Menu {
 
     }
 
+    public void removerCliente(int idCliente) {
+        for (Cliente cliente : clienteController.listaClientes) {
+            if (cliente.Id == idCliente) {
+                removerCliente(idCliente);
+            }
+        }
+    }
 
-    public void MenuProduto(){
-        Scanner leitor = new Scanner(System.in);
-        
+    public void MenuProduto() {
+
         System.out.println("---------------------------");
         System.out.println("    MENU PRODUTO  ");
         System.out.println("---------------------------");
@@ -122,18 +129,17 @@ public class Menu {
                 break;
             case 3:
                 produtoController.carregarProdutosDoArquivo();
-                produtoController.listarClientes();
+                produtoController.listaProdutos();
                 break;
-            
+
             default:
                 System.out.println("Opção invalida!");
                 break;
         }
 
-
     }
 
-    public Cliente pedirDadosProduto(){
+    public Produto pedirDadosProduto() {
         leitor.nextLine();
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
@@ -143,8 +149,9 @@ public class Menu {
         String fornecedor = leitor.nextLine();
 
         int novoId = produtoController.retornarID() + 1;
-        var produtotoAdd = new Produto(novoId, nome, preco, novoId, fornecedor);
+        var produtotoAdd = new Produto(novoId, nome, preco, novoId, null);
         return produtotoAdd;
 
     }
+
 }

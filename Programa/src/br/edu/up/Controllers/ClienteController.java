@@ -30,7 +30,7 @@ public class ClienteController {
                 String cpf = partes[1];
                 String nome = partes[2];
                 int idade = Integer.parseInt(partes[3]);
-                Endereco endereco = null; // Supondo que o endereço seja uma String simples
+                Endereco endereco = null;
                 Cliente cliente = new Cliente(id, nome, cpf, idade, endereco);
                 listaClientes.add(cliente);
             }
@@ -41,6 +41,7 @@ public class ClienteController {
         }
     }
 
+    // metodo para auxiliar no cadastro de cliente (auto incremento de ID)
     public int retornarID(){
         int ultimoID = 0;
 
@@ -69,12 +70,14 @@ public class ClienteController {
     }
 
 
+    // adicionar cliente na lista e executa o metodo para salvar no arquivo csv
     public void adicionarCliente(Cliente cliente) {
         listaClientes.add(cliente);
         salvarCliente();
     }
 
 
+    // metodo para listar clientes
     public void listarClientes(){
         try { 
 
@@ -95,6 +98,7 @@ public class ClienteController {
         }
     }
 
+    // metodo para gravar cliente
     public void salvarCliente() {
         try {
             FileWriter ClienteBDgravar = new FileWriter(ClientesBD, true);
@@ -104,6 +108,31 @@ public class ClienteController {
                 String linhaCSV = c.toCSV();
                 gravador.println(linhaCSV);
             }
+            gravador.close();
+        } catch (IOException e) {
+            System.out.println("Erro de IO: " + e.getMessage());
+        }
+    }
+
+    // metodo para remover cliente da lista e do arquivo csv
+    public void removerCliente(int idCliente) {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.Id == idCliente){
+                listaClientes.remove(cliente);
+            }
+        }
+
+        try {
+            FileWriter ClienteBDgravar = new FileWriter(ClientesBD);
+            PrintWriter gravador = new PrintWriter(ClienteBDgravar);
+
+            gravador.println("ID;CPF;Nome;Idade;Endereco");
+
+            for (Cliente c : listaClientes) {
+                String linhaCSV = c.toCSV();
+                gravador.println(linhaCSV);
+            }
+
             gravador.close();
         } catch (IOException e) {
             System.out.println("Erro de IO: " + e.getMessage());
