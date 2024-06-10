@@ -69,7 +69,7 @@ public class Menu {
                 break;
             case 2:
                 // remover cliente
-                System.out.println("Informe o ID que do cliente que deseja remover:");
+                System.out.println("Informe o ID do cliente que deseja remover: ");
                 int idInformado = leitor.nextInt();
                 removerCliente(idInformado);
                 break;
@@ -129,8 +129,10 @@ public class Menu {
                 produtoController.adicionarProduto(novoProduto);
                 break;
             case 2:
-                // remover produto
-                break;
+                 System.out.println("Informe o ID do produto que deseja remover: ");
+                 int idInformado = leitor.nextInt();
+                 removerProduto(idInformado);
+                 break;
             case 3:
                 produtoController.carregarProdutosDoArquivo();
                 produtoController.listaProdutos();
@@ -153,9 +155,16 @@ public class Menu {
         String fornecedor = leitor.nextLine();
 
         int novoId = produtoController.retornarID() + 1;
-        var produtotoAdd = new Produto(novoId, nome, preco, novoId, null);
+        var produtotoAdd = new Produto(novoId, nome, preco, novoId, fornecedor);
         return produtotoAdd;
 
     }
 
+    public void removerProduto(int idProduto) {
+        for (Produto produto : produtoController.listaProdutos) {
+            if (produto.Id == idProduto) {
+                removerProduto(idProduto);
+            }
+        }
+    }
 }
