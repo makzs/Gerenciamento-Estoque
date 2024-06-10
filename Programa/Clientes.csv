@@ -1,0 +1,5 @@
+ID | cpf | nome | idade | endereco
+20;123;cliente1;20;null
+30;321;cliente2;30;null
+21;545;cliente3;44;null
+22;666;cliente4;33;null
