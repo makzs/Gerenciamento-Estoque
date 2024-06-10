@@ -50,10 +50,21 @@ public class EnderecoController {
         salvarCliente();
     }
 
-    public Endereco BuscarPorId(int idDoDono) {
+    public Endereco BuscarPorFornecedorId(int fornecedorId) {
         Endereco enderecoEncontrado = null;
         for (Endereco endereco : listaEnderecos) {
-            if (endereco.getFornecedorId() == idDoDono) {
+            if (endereco.getFornecedorId() == fornecedorId) {
+                enderecoEncontrado = endereco;
+                break; // Se encontrado, podemos interromper o loop
+            }
+        }
+        return enderecoEncontrado;
+    }
+
+    public Endereco BuscarPorClienteId(int clienteId) {
+        Endereco enderecoEncontrado = null;
+        for (Endereco endereco : listaEnderecos) {
+            if (endereco.getClienteId() == clienteId) {
                 enderecoEncontrado = endereco;
                 break; // Se encontrado, podemos interromper o loop
             }

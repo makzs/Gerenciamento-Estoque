@@ -167,15 +167,17 @@ public class Menu {
                 enderecoController.adicionarEndereco(novoEndereco);
                 break;
             case 2:
-                // remover cliente
-                System.out.println("Informe o ID que do cliente que deseja remover:");
-                int idInformado = leitor.nextInt();
-                clienteController.removerCliente(idInformado);
+                // remover endereco
+                
                 break;
             case 3:
-                // listar cliente
-                clienteController.carregarClientesDoArquivo();
-                clienteController.listarClientes();
+                // buscar endereco
+                System.out.println("Informe o clientId");
+                int clienteId = leitor.nextInt();
+                enderecoController.carregarEnderecosDoArquivo();
+                var endereco = enderecoController.BuscarPorClienteId(clienteId);
+                System.out.println(endereco);
+              
                 break;
 
             default:
