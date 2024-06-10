@@ -114,7 +114,7 @@ public class Menu {
             case 1:
                 // cadastrar Fornecedor
                 Fornecedor novoFornecedor = pedirDadosFornecedor();
-                clienteController.adicionarFornecedor(novoFornecedor);
+                fornecedorController.adicionarFornecedor(novoFornecedor);
                 MenuFornecedor();
                 break;
             case 2:
@@ -139,6 +139,25 @@ public class Menu {
                 break;
         }
         leitor.close();
+    }
+
+    // função para cadastrar um fornecedor
+    public Fornecedor pedirDadosFornecedor() {
+        leitor.nextLine();
+        System.out.println("Informe o nome:");
+        String nome = leitor.nextLine();
+        System.out.println("Informe o cnpj:");
+        int cnpj = leitor.nextInt();
+        System.out.println("Informe o telefone:");
+        String telefone = leitor.nextLine();
+        Endereco novoendereco = pedirDadosEndereco();
+        enderecoController.adicionarEndereco(novoendereco);
+
+        int novoId = fornecedorController.retornarID();
+        novoId++;
+        var fornecedorToAdd = new Fornecedor(novoId, nome, cnpj, telefone);
+        return fornecedorToAdd;
+
     }
 
     public void MenuCliente() {
