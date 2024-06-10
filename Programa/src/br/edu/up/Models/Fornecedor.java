@@ -3,12 +3,29 @@ package br.edu.up.Models;
 public class Fornecedor extends BaseEntity {
    private String nome;
    private int cnpj;
-   private String end;
+   private String telefone;
 
-   public Fornecedor (String nome, int cnpj, String end) {
+   
+   public Fornecedor (int id, String nome, int cnpj, String telefone) {
+      super.Id = id;
       this.nome = nome;
       this.cnpj = cnpj;
-      this.end = end;
+      this.telefone = telefone;
+   }
+   
+   private Endereco endereco;
+
+   public Fornecedor(int id, String nome, int cnpj, String telefone, Endereco endereco) {
+      super.Id = id;
+      this.nome = nome;
+      this.cnpj = cnpj;
+      this.telefone = telefone;
+      this.endereco = endereco;
+   }
+
+   // metodo para converter para csv
+   public String toCSV(){
+      return super.Id + ";" + nome + ";" + cnpj + ";" + telefone + ";" + endereco.toCSV();
    }
 
    public String getNome() {
@@ -19,8 +36,8 @@ public class Fornecedor extends BaseEntity {
       return cnpj;
    }
 
-   public String getEnd() {
-      return end;
+   public String getTelefone() {
+      return telefone;
    }
 
    public void setNome(String nome) {
@@ -31,8 +48,16 @@ public class Fornecedor extends BaseEntity {
       this.cnpj = cnpj;
    }
 
-   public void setEnd(String end) {
-      this.end = end;
+   public void setTelefone(String end) {
+      this.telefone = end;
+   }
+
+   public Endereco getEndereco() {
+      return endereco;
+   }
+
+   public void setEndereco(Endereco endereco) {
+      this.endereco = endereco;
    }
 
 }
