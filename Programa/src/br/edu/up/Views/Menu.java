@@ -52,8 +52,48 @@ public class Menu {
     }
 
     private void MenuPedido() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'MenuPedido'");
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.println("---------------------------");
+        System.out.println("    MENU PEDIDO  ");
+        System.out.println("---------------------------");
+        System.out.println("1. Adicionar Pedido");
+        System.out.println("2. Remover Pedido");
+        System.out.println("3. Listar Pedido");
+        System.out.println("4. Sair");
+        System.out.println("---------------------------");
+        System.out.println("Opção: ");
+        int opcao = leitor.nextInt();
+
+        switch (opcao) {
+            case 1:
+                // cadastrar Pedido
+                Pedido novoPedido = pedirDadosPedido();
+                pedidoController.adicionarPedido(novoPedido);
+                MenuPedido();
+                break;
+            case 2:
+                // remover Pedido
+                pedidoController.carregarPedidoDoArquivo();
+                System.out.println("Informe o ID do pedido que deseja remover:");
+                int idInformado = leitor.nextInt();
+                pedidoController.removerPedido(idInformado);
+                MenuPedido();
+                break;
+            case 3:
+                // listar Pedido
+                pedidoController.carregarPedidoDoArquivo();
+                pedidoController.listarPedido();
+                MenuPedido();
+                break;
+            case 4:
+                mostrar();
+                break;
+            default:
+                System.out.println("Opção invalida!");
+                break;
+        }
+        leitor.close();
     }
 
     private void MenuFornecedor() {
