@@ -1,6 +1,5 @@
 package br.edu.up.Views;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import br.edu.up.Models.*;
@@ -104,10 +103,12 @@ public class Menu {
         String nome = leitor.nextLine();
         System.out.println("Informe a idade:");
         int idade = leitor.nextInt();
+        Endereco novoendereco = pedirDadosEndereco();
+        enderecoController.adicionarEndereco(novoendereco);
 
         int novoId = clienteController.retornarID();
         novoId++;
-        var clienteToAdd = new Cliente(novoId, nome, cpf, idade, null);
+        var clienteToAdd = new Cliente(novoId, nome, cpf, idade);
         return clienteToAdd;
 
     }

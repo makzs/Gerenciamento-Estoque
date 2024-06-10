@@ -4,11 +4,19 @@ public class Cliente extends BaseEntity {
     private String nome;
     private String cpf;
     private int idade;
+
+    public Cliente(int id, String nome, String cpf, int idade) {
+        super.Id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.idade = idade;
+    }
+
     private Endereco endereco;
 
     // metodo para converter para csv
     public String toCSV(){
-        return super.Id + ";" + cpf + ";" + nome + ";" + idade + ";" + endereco;
+        return super.Id + ";" + cpf + ";" + nome + ";" + idade + ";" + endereco.toCSV();
     }
 
     // construtor
