@@ -101,8 +101,10 @@ public class ClienteController {
     // metodo para gravar cliente
     public void salvarCliente() {
         try {
-            FileWriter ClienteBDgravar = new FileWriter(ClientesBD, true);
+            FileWriter ClienteBDgravar = new FileWriter(ClientesBD, false);
             PrintWriter gravador = new PrintWriter(ClienteBDgravar);
+
+            gravador.println("ID | cpf | nome | idade | endereco");
 
             for (Cliente c : listaClientes) {
                 String linhaCSV = c.toCSV();
@@ -117,26 +119,20 @@ public class ClienteController {
     // metodo para remover cliente da lista e do arquivo csv
     public void removerCliente(int idCliente) {
         for (Cliente cliente : listaClientes) {
-            if (cliente.Id == idCliente){
+            if (cliente.Id == idCliente) {
                 listaClientes.remove(cliente);
+                salvarCliente();
+                listaClientes.clear();
+                System.out.println("Cliente Removido com sucesso");
+                break;
+            }
+            else{
+                System.out.println("Cliente nao encontrado");
             }
         }
-
-        try {
-            FileWriter ClienteBDgravar = new FileWriter(ClientesBD);
-            PrintWriter gravador = new PrintWriter(ClienteBDgravar);
-
-            gravador.println("ID;CPF;Nome;Idade;Endereco");
-
-            for (Cliente c : listaClientes) {
-                String linhaCSV = c.toCSV();
-                gravador.println(linhaCSV);
-            }
-
-            gravador.close();
-        } catch (IOException e) {
-            System.out.println("Erro de IO: " + e.getMessage());
-        }
+    
+        
     }
+    
 
 }
