@@ -66,16 +66,13 @@ public class ProdutoController {
         } catch (NumberFormatException e) {
             System.out.println("Erro ao converter ID para inteiro: " + e.getMessage());
         }
-
         return ultimoID;
     }
-
 
     public void adicionarProduto(Produto produto) {
         listaProdutos.add(produto);
         salvarProduto();
     }
-
 
     public void listaProdutos(){
         try { 
@@ -83,12 +80,9 @@ public class ProdutoController {
             Scanner leitor = new Scanner(ProdutosBD);
             leitor.nextLine();
 
-
             while (leitor.hasNextLine()) {
                 String linha = leitor.nextLine();
                 System.out.println(linha);
-                
-
             }
 
             leitor.close();
@@ -112,4 +106,27 @@ public class ProdutoController {
         }
     }
 
+     public void removerProduto(int idProduto) {
+        for (Produto produto : listaProdutos) {
+            if (produto.Id == idProduto){
+                listaProdutos.remove(produto);
+            }
+        }
+
+        try {
+            FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD);
+            PrintWriter gravador = new PrintWriter(ProdutoBDgravar);
+            
+            gravador.println("ID;nome;preço;quantidade;fornecedor");
+
+            for (Produto p : listaProdutos) {
+                String linhaCSV = p.toCSV();
+                gravador.println(linhaCSV);
+            }
+
+            gravador.close();
+        } catch (IOException e) {
+            System.out.println("Erro de IO: " + e.getMessage());
+        }
+    }
 }

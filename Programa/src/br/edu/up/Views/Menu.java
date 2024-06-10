@@ -59,6 +59,7 @@ public class Menu {
         System.out.println("1. Adicionar Cliente");
         System.out.println("2. Remover Cliente");
         System.out.println("3. Listar Cliente");
+        System.out.println("4. Sair");
         System.out.println("---------------------------");
         System.out.println("Opção: ");
         int opcao = leitor.nextInt();
@@ -68,19 +69,25 @@ public class Menu {
                 // cadastrar cliente
                 Cliente novoCliente = pedirDadosCliente();
                 clienteController.adicionarCliente(novoCliente);
+                MenuCliente();
                 break;
             case 2:
                 // remover cliente
-                System.out.println("Informe o ID que do cliente que deseja remover:");
+                clienteController.carregarClientesDoArquivo();
+                System.out.println("Informe o ID do cliente que deseja remover:");
                 int idInformado = leitor.nextInt();
-                removerCliente(idInformado);
+                clienteController.removerCliente(idInformado);
+                MenuCliente();
                 break;
             case 3:
                 // listar cliente
                 clienteController.carregarClientesDoArquivo();
                 clienteController.listarClientes();
+                MenuCliente();
                 break;
-
+            case 4:
+                mostrar();
+                break;
             default:
                 System.out.println("Opção invalida!");
                 break;
@@ -98,20 +105,13 @@ public class Menu {
         System.out.println("Informe a idade:");
         int idade = leitor.nextInt();
 
-        int novoId = clienteController.retornarID() + 1;
+        int novoId = clienteController.retornarID();
+        novoId++;
         var clienteToAdd = new Cliente(novoId, nome, cpf, idade, null);
         return clienteToAdd;
 
     }
 
-    // função para remover um cliente
-    public void removerCliente(int idCliente) {
-        for (Cliente cliente : clienteController.listaClientes) {
-            if (cliente.Id == idCliente) {
-                removerCliente(idCliente);
-            }
-        }
-    }
 
     public void MenuProduto() {
 
@@ -131,8 +131,10 @@ public class Menu {
                 produtoController.adicionarProduto(novoProduto);
                 break;
             case 2:
-                // remover produto
-                break;
+                 System.out.println("Informe o ID do produto que deseja remover: ");
+                 int idInformado = leitor.nextInt();
+                 removerProduto(idInformado);
+                 break;
             case 3:
                 produtoController.carregarProdutosDoArquivo();
                 produtoController.listaProdutos();
@@ -193,11 +195,12 @@ public class Menu {
         String fornecedor = leitor.nextLine();
 
         int novoId = produtoController.retornarID() + 1;
-        var produtotoAdd = new Produto(novoId, nome, preco, novoId, null);
+        var produtotoAdd = new Produto(novoId, nome, preco, novoId, fornecedor);
         return produtotoAdd;
 
     }
 
+<<<<<<< HEAD
     public Endereco pedirDadosEndereco() {
         leitor.nextLine();
         System.out.println("Informe a rua:");
@@ -223,4 +226,13 @@ public class Menu {
 
     }
 
+=======
+    public void removerProduto(int idProduto) {
+        for (Produto produto : produtoController.listaProdutos) {
+            if (produto.Id == idProduto) {
+                removerProduto(idProduto);
+            }
+        }
+    }
+>>>>>>> c90fe6ddb957e99c20a3d048c05ded1b2fa0a98b
 }
