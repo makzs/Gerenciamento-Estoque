@@ -112,7 +112,6 @@ public class Menu {
 
     }
 
-
     public void MenuProduto() {
 
         System.out.println("---------------------------");
@@ -131,10 +130,10 @@ public class Menu {
                 produtoController.adicionarProduto(novoProduto);
                 break;
             case 2:
-                 System.out.println("Informe o ID do produto que deseja remover: ");
-                 int idInformado = leitor.nextInt();
-                 removerProduto(idInformado);
-                 break;
+                System.out.println("Informe o ID do produto que deseja remover: ");
+                int idInformado = leitor.nextInt();
+                removerProduto(idInformado);
+                break;
             case 3:
                 produtoController.carregarProdutosDoArquivo();
                 produtoController.listaProdutos();
@@ -170,7 +169,7 @@ public class Menu {
                 // remover cliente
                 System.out.println("Informe o ID que do cliente que deseja remover:");
                 int idInformado = leitor.nextInt();
-                removerCliente(idInformado);
+                clienteController.removerCliente(idInformado);
                 break;
             case 3:
                 // listar cliente
@@ -200,7 +199,6 @@ public class Menu {
 
     }
 
-<<<<<<< HEAD
     public Endereco pedirDadosEndereco() {
         leitor.nextLine();
         System.out.println("Informe a rua:");
@@ -226,7 +224,6 @@ public class Menu {
 
     }
 
-=======
     public void removerProduto(int idProduto) {
         for (Produto produto : produtoController.listaProdutos) {
             if (produto.Id == idProduto) {
@@ -234,5 +231,4 @@ public class Menu {
             }
         }
     }
->>>>>>> c90fe6ddb957e99c20a3d048c05ded1b2fa0a98b
 }
