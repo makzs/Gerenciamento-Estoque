@@ -96,6 +96,39 @@ public class Menu {
         leitor.close();
     }
 
+    // função para cadastrar um pedido
+    public Pedido pedirDadosPedido() {
+        int novoId = pedidoController.retornarID();
+        novoId++;
+        
+        leitor.nextLine();
+
+        System.out.println("Informe os dados do produto:");
+        Produto novoProduto = pedirDadosProduto();
+        produtoController.adicionarProduto(novoProduto);
+
+        System.out.println("Informe os dados do cliente:");
+        Cliente novoCliente = pedirDadosCliente();
+        clienteController.adicionarCliente(novoCliente);
+
+        System.out.println("Informe o método de pagamento:");
+        String metododePagamento = leitor.nextLine();
+
+        System.out.println("Informe a taxa de entrega:");
+        int taxadeEntrega = leitor.nextInt();
+
+        System.out.println("Informe o status do pedido:");
+        String status = leitor.nextLine();
+        
+        System.out.println("Adicione observacoes sobre o pedido:");
+        String observacoes = leitor.nextLine();
+        
+        var pedidoToAdd = new Pedido(novoId, null, null, metododePagamento, taxadeEntrega, status, observacoes);
+        return pedidoToAdd;
+
+    }
+
+
     private void MenuFornecedor() {
         Scanner leitor = new Scanner(System.in);
 
@@ -143,6 +176,9 @@ public class Menu {
 
     // função para cadastrar um fornecedor
     public Fornecedor pedirDadosFornecedor() {
+        int novoId = fornecedorController.retornarID();
+        novoId++;
+
         leitor.nextLine();
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
@@ -153,12 +189,11 @@ public class Menu {
         Endereco novoendereco = pedirDadosEndereco();
         enderecoController.adicionarEndereco(novoendereco);
 
-        int novoId = fornecedorController.retornarID();
-        novoId++;
         var fornecedorToAdd = new Fornecedor(novoId, nome, cnpj, telefone);
         return fornecedorToAdd;
 
     }
+
 
     public void MenuCliente() {
         Scanner leitor = new Scanner(System.in);
