@@ -2,13 +2,17 @@ package br.edu.up.Models;
 
 public class Endereco extends BaseEntity {
 
-    public Endereco(String rua, String numero, String complemento, String cidade, String estado, String cep) {
+    public Endereco(int id, String rua, String numero, String complemento, String cidade, String estado, String cep,
+            int clienteId, int fornecedorId) {
+        super.Id = id;
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
+        this.ClienteId = clienteId;
+        this.FornecedorId = fornecedorId;
     }
 
     private String rua;
@@ -17,6 +21,24 @@ public class Endereco extends BaseEntity {
     private String cidade;
     private String estado;
     private String cep;
+    private int ClienteId;
+    private int FornecedorId;
+
+    public int getClienteId() {
+        return ClienteId;
+    }
+
+    public void setClienteId(int clienteId) {
+        ClienteId = clienteId;
+    }
+
+    public int getFornecedorId() {
+        return FornecedorId;
+    }
+
+    public void setFornecedorId(int fornecedorId) {
+        FornecedorId = fornecedorId;
+    }
 
     public String getRua() {
         return rua;
@@ -67,7 +89,9 @@ public class Endereco extends BaseEntity {
     }
 
     public String toCSV() {
-        return rua + ";" + numero + ";" + complemento + ";" + cidade + ";" + estado + ";" + cep;
+        return super.Id + ";" + rua + ";" + numero + ";" + complemento + ";" + cidade + ";" + estado + ";" + cep + ";"
+                + ClienteId + ";"
+                + FornecedorId;
     }
 
     @Override
