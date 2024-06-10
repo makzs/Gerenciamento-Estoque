@@ -43,19 +43,14 @@ public class FornecedorController {
 
      // metodo para listar fornecedores
      public void listarFornecedor(){
-        try { 
-
+        try {
             Scanner leitor = new Scanner(FornecedoresBD);
             leitor.nextLine();
-
 
             while (leitor.hasNextLine()) {
                 String linha = leitor.nextLine();
                 System.out.println(linha);
-                
-
             }
-
             leitor.close();
         } catch (FileNotFoundException x) {
             System.out.println("O arquivo" + FornecedoresBD + " nao foi encontrado pois " + x.getCause());
