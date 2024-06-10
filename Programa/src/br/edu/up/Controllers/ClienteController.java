@@ -21,7 +21,7 @@ public class ClienteController {
     public void carregarClientesDoArquivo() {
         try {
             Scanner scanner = new Scanner(ClientesBD);
-            scanner.nextLine(); // Ignora a primeira linha (cabeçalho)
+            scanner.nextLine();
 
             while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();

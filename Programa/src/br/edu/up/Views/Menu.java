@@ -68,11 +68,13 @@ public class Menu {
                 clienteController.adicionarCliente(novoCliente);
                 break;
             case 2:
+                // remover cliente
                 System.out.println("Informe o ID que do cliente que deseja remover:");
                 int idInformado = leitor.nextInt();
                 removerCliente(idInformado);
                 break;
             case 3:
+                // listar cliente
                 clienteController.carregarClientesDoArquivo();
                 clienteController.listarClientes();
                 break;
@@ -84,6 +86,7 @@ public class Menu {
         leitor.close();
     }
 
+    // função para cadastrar um cliente
     public Cliente pedirDadosCliente() {
         leitor.nextLine();
         System.out.println("Informe o cpf:");
@@ -99,6 +102,7 @@ public class Menu {
 
     }
 
+    // função para remover um cliente
     public void removerCliente(int idCliente) {
         for (Cliente cliente : clienteController.listaClientes) {
             if (cliente.Id == idCliente) {
