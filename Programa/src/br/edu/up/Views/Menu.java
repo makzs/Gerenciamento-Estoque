@@ -1,5 +1,6 @@
 package br.edu.up.Views;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import br.edu.up.Models.*;
@@ -9,6 +10,7 @@ public class Menu {
     Scanner leitor = new Scanner(System.in);
     ClienteController clienteController = new ClienteController();
     ProdutoController produtoController = new ProdutoController();
+    EnderecoController enderecoController = new EnderecoController();
 
     public void mostrar() {
 
@@ -27,7 +29,7 @@ public class Menu {
 
         switch (opcao) {
             case 1:
-                // menu endereço;
+                MenuEndereco();
                 break;
             case 2:
                 MenuCliente();
@@ -143,6 +145,44 @@ public class Menu {
 
     }
 
+    public void MenuEndereco() {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.println("---------------------------");
+        System.out.println("    MENU Endereço  ");
+        System.out.println("---------------------------");
+        System.out.println("1. Adicionar Endereço");
+        System.out.println("2. Remover Endereço");
+        System.out.println("3. Listar Endereço");
+        System.out.println("---------------------------");
+        System.out.println("Opção: ");
+        int opcao = leitor.nextInt();
+
+        switch (opcao) {
+            case 1:
+                // cadastrar end
+                var novoEndereco = pedirDadosEndereco();
+                enderecoController.adicionarEndereco(novoEndereco);
+                break;
+            case 2:
+                // remover cliente
+                System.out.println("Informe o ID que do cliente que deseja remover:");
+                int idInformado = leitor.nextInt();
+                removerCliente(idInformado);
+                break;
+            case 3:
+                // listar cliente
+                clienteController.carregarClientesDoArquivo();
+                clienteController.listarClientes();
+                break;
+
+            default:
+                System.out.println("Opção invalida!");
+                break;
+        }
+        leitor.close();
+    }
+
     public Produto pedirDadosProduto() {
         leitor.nextLine();
         System.out.println("Informe o nome:");
@@ -155,6 +195,31 @@ public class Menu {
         int novoId = produtoController.retornarID() + 1;
         var produtotoAdd = new Produto(novoId, nome, preco, novoId, null);
         return produtotoAdd;
+
+    }
+
+    public Endereco pedirDadosEndereco() {
+        leitor.nextLine();
+        System.out.println("Informe a rua:");
+        String rua = leitor.nextLine();
+        System.out.println("Informe o numero:");
+        String numero = leitor.nextLine();
+        System.out.println("Informe o complemento:");
+        String complemento = leitor.nextLine();
+        System.out.println("Informe o cidade:");
+        String cidade = leitor.nextLine();
+        System.out.println("Informe o estado:");
+        String estado = leitor.nextLine();
+        System.out.println("Informe o cep:");
+        String cep = leitor.nextLine();
+        System.out.println("Informe o Id do cliente:");
+        int clientId = leitor.nextInt();
+        System.out.println("Informe o Id do fornecedor:");
+        int fornecedorId = leitor.nextInt();
+
+        // int novoId = produtoController.retornarID() + 1;
+        var enderecoToAdd = new Endereco(2, rua, numero, complemento, cidade, estado, cep, clientId, fornecedorId);
+        return enderecoToAdd;
 
     }
 
