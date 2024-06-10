@@ -13,8 +13,10 @@ import br.edu.up.Models.Endereco;
 
 public class EnderecoController {
 
-    File enderecoDB = new File(
-            "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Enderecos.csv");
+    String relativePath = "Programa\\Enderecos.csv";
+    String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Enderecos.csv";
+
+    File enderecoDB = new File(relativePath);
     public List<Endereco> listaEnderecos = new ArrayList<>();
 
     public void carregarEnderecosDoArquivo() {

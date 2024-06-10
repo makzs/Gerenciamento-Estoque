@@ -14,7 +14,11 @@ import br.edu.up.Models.Fornecedor;
 
 public class ProdutoController {
 
-    File ProdutosBD = new File("C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Produtos.csv");
+    String relativePath = "Programa\\Clientes.csv";
+    String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
+
+    File ProdutosBD = new File(relativePath);
+    
     public List<Produto> listaProdutos = new ArrayList<>();
 
     public void carregarProdutosDoArquivo() {

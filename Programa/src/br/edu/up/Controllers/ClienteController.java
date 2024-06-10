@@ -14,7 +14,9 @@ import br.edu.up.Models.Endereco;
 
 public class ClienteController {
 
-    File ClientesBD = new File("C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Clientes.csv");
+    String relativePath = "Programa\\Clientes.csv";
+    String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Clientes.csv"; //path da maquina osorio
+    File ClientesBD = new File(relativePath);
     public List<Cliente> listaClientes = new ArrayList<>();
 
     // Método para carregar os clientes do arquivo CSV para a listaClientes
