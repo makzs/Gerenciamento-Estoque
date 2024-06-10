@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import br.edu.up.Models.Cliente;
 import br.edu.up.Models.Endereco;
 
 public class EnderecoController {
 
     File enderecoDB = new File(
-            "C:\\Users\\autologon\\Desktop\\kkkkkkkkkkk\\Gerenciamento-Estoque\\Programa\\Enderecos.csv");
+            "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Enderecos.csv");
     public List<Endereco> listaEnderecos = new ArrayList<>();
 
     public void carregarEnderecosDoArquivo() {
