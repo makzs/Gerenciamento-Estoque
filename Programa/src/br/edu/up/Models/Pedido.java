@@ -2,49 +2,51 @@ package br.edu.up.Models;
 
 public class Pedido extends BaseEntity {
 
-   
-   private int id; /* Identificador da entrega */
-   private String produto;
-   private String cliente;
+   private Produto produto;
+   private Cliente cliente;
    private String metododePagamento;
    private int taxadeEntrega;
    private String status; /*se o pedido ta sendo encaminhado, esta sendo preparado */
    private String observacoes; /*alguma nota ou observacoes no pedido */
+   
 
-   public Pedido(int id, String produto, String cliente) {
-      this.id = id;
-      this.produto = produto;
-      this.cliente = cliente;
-   }
-
-   public Pedido(String metododePagamento, int taxadeEntrega, String status, String observacoes) {
+   public Pedido(int id, String metododePagamento, int taxadeEntrega, String status, String observacoes) {
+      super.Id = id;
       this.metododePagamento = metododePagamento;
       this.taxadeEntrega = taxadeEntrega;
       this.status = status;
       this.observacoes = observacoes;
    }
 
-   public int getId() {
-      return id;
+   public Pedido(int id, Produto produto, Cliente cliente, String metododePagamento, int taxadeEntrega, String status,
+         String observacoes) {
+      super.Id = id;
+      this.produto = produto;
+      this.cliente = cliente;
+      this.metododePagamento = metododePagamento;
+      this.taxadeEntrega = taxadeEntrega;
+      this.status = status;
+      this.observacoes = observacoes;
    }
 
-   public String getProduto() {
+   // metodo para converter para csv
+   public String toCSV(){
+      return super.Id + ";" + produto + ";" + cliente + ";" + metododePagamento + ";" + taxadeEntrega + ";" + status + ";" + observacoes + ";";
+   }
+
+   public Produto getProduto() {
       return produto;
    }
 
-   public String getCliente() {
-      return cliente;
-   }
-
-   public void setId(int id) {
-      this.id = id;
-   }
-
-   public void setProduto(String produto) {
+   public void setProduto(Produto produto) {
       this.produto = produto;
    }
 
-   public void setCliente(String cliente) {
+   public Cliente getCliente() {
+      return cliente;
+   }
+
+   public void setCliente(Cliente cliente) {
       this.cliente = cliente;
    }
 
@@ -79,7 +81,4 @@ public class Pedido extends BaseEntity {
    public void setObservacoes(String observacoes) {
       this.observacoes = observacoes;
    }
-
-   
-
 }
