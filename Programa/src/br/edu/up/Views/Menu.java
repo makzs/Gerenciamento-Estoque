@@ -102,6 +102,7 @@ public class Menu {
         String nome = leitor.nextLine();
         System.out.println("Informe a idade:");
         int idade = leitor.nextInt();
+        
 
         int novoId = clienteController.retornarID();
         novoId++;
