@@ -10,6 +10,8 @@ public class Menu {
     ClienteController clienteController = new ClienteController();
     ProdutoController produtoController = new ProdutoController();
     EnderecoController enderecoController = new EnderecoController();
+    FornecedorController fornecedorController = new FornecedorController();
+    PedidoController pedidoController = new PedidoController();
 
     public void mostrar() {
 
@@ -34,19 +36,69 @@ public class Menu {
                 MenuCliente();
                 break;
             case 3:
-                // menu fornecodr
+                MenuFornecedor();
                 break;
             case 4:
                 MenuProduto();
                 break;
             case 5:
-                // menu pedido
+                MenuPedido();
                 break;
             default:
                 System.out.println("Opção Invalida!");
                 break;
         }
 
+    }
+
+    private void MenuPedido() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'MenuPedido'");
+    }
+
+    private void MenuFornecedor() {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.println("---------------------------");
+        System.out.println("    MENU FORNECEDOR  ");
+        System.out.println("---------------------------");
+        System.out.println("1. Adicionar Fornecedor");
+        System.out.println("2. Remover Fornecedor");
+        System.out.println("3. Listar Fornecedor");
+        System.out.println("4. Sair");
+        System.out.println("---------------------------");
+        System.out.println("Opção: ");
+        int opcao = leitor.nextInt();
+
+        switch (opcao) {
+            case 1:
+                // cadastrar Fornecedor
+                Fornecedor novoFornecedor = pedirDadosFornecedor();
+                clienteController.adicionarFornecedor(novoFornecedor);
+                MenuFornecedor();
+                break;
+            case 2:
+                // remover Fornecedor
+                fornecedorController.carregarFornecedorDoArquivo();
+                System.out.println("Informe o ID do fornecedor que deseja remover:");
+                int idInformado = leitor.nextInt();
+                fornecedorController.removerFornecedor(idInformado);
+                MenuFornecedor();
+                break;
+            case 3:
+                // listar Fornecedor
+                fornecedorController.carregarFornecedorDoArquivo();
+                fornecedorController.listarFornecedor();
+                MenuFornecedor();
+                break;
+            case 4:
+                mostrar();
+                break;
+            default:
+                System.out.println("Opção invalida!");
+                break;
+        }
+        leitor.close();
     }
 
     public void MenuCliente() {
