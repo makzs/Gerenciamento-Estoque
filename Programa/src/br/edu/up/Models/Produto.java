@@ -8,12 +8,16 @@ public class Produto extends BaseEntity {
     protected int quantidade;
     protected Fornecedor fornecedor;
     
-    public Produto(int id, String nome, double preco, int quantidade, Fornecedor fornecedor) {
+    public Produto(int id, String nome, double preco, int quantidade, Fornecedor fornecedor2) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.fornecedor = fornecedor;
+        this.fornecedor = fornecedor2;
+    }
+
+    public Produto(int novoId, String nome2, double preco2, int novoId2, String fornecedor2) {
+        //TODO Auto-generated constructor stub
     }
 
     public String toCSV(){
