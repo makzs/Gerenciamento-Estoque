@@ -2,34 +2,21 @@ package br.edu.up.Models;
 
 public class Produto extends BaseEntity {
     
-    protected int id;
     protected String nome;
     protected double preco;
     protected int quantidade;
     protected Fornecedor fornecedor;
     
-    public Produto(int id, String nome, double preco, int quantidade, Fornecedor fornecedor2) {
-        this.id = id;
+    public Produto(int id, String nome, double preco, int quantidade, Fornecedor Fornecedor) {
+        super.Id = id;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.fornecedor = fornecedor2;
-    }
-
-    public Produto(int novoId, String nome2, double preco2, int novoId2, String fornecedor2) {
-        //TODO Auto-generated constructor stub
+        this.fornecedor = Fornecedor;
     }
 
     public String toCSV(){
         return super.Id + ";" + nome + ";" + preco + ";" + quantidade + ";" + fornecedor;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

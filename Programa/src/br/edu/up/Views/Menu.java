@@ -107,6 +107,7 @@ public class Menu {
         Produto novoProduto = pedirDadosProduto();
         produtoController.adicionarProduto(novoProduto);
 
+        leitor.nextLine();
         System.out.println("Informe os dados do cliente:");
         Cliente novoCliente = pedirDadosCliente();
         clienteController.adicionarCliente(novoCliente);
@@ -242,7 +243,6 @@ public class Menu {
 
     // função para cadastrar um cliente
     public Cliente pedirDadosCliente() {
-        leitor.nextLine();
         System.out.println("Informe o cpf:");
         String cpf = leitor.nextLine();
         System.out.println("Informe o nome:");
@@ -334,16 +334,17 @@ public class Menu {
     }
 
     public Produto pedirDadosProduto() {
-        leitor.nextLine();
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
         System.out.println("Informe o preço:");
         double preco = leitor.nextDouble();
-        System.out.println("Informe o fornecedor:");
-        String fornecedor = leitor.nextLine();
+        System.out.println("Informe a quantidade:");
+        int quantidade = leitor.nextInt();
+        System.out.println("Cadestre o fornecedor:");
+        Fornecedor novoFornecedor = pedirDadosFornecedor();
 
         int novoId = produtoController.retornarID() + 1;
-        var produtotoAdd = new Produto(novoId, nome, preco, novoId, fornecedor);
+        var produtotoAdd = new Produto(novoId, nome, preco, quantidade, novoFornecedor);
         return produtotoAdd;
 
     }

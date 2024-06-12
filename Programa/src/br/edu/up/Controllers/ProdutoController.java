@@ -33,10 +33,7 @@ public class ProdutoController {
                 String nome = partes[1];
                 double preco = Double.parseDouble(partes[2]);
                 int quantidade = Integer.parseInt(partes[3]);
-                String fornecedorNome = partes[4];
-                int fornecedorCnpj = Integer.parseInt(partes[5]); 
-                String fornecedorEnd = partes[6];
-                Fornecedor fornecedor = new Fornecedor(fornecedorNome, fornecedorCnpj, fornecedorEnd);
+                Fornecedor fornecedor = null;
                 Produto produto = new Produto(id, nome, preco, quantidade, fornecedor);
                 listaProdutos.add(produto);
             }
