@@ -14,7 +14,7 @@ import br.edu.up.Models.Fornecedor;
 
 public class ProdutoController {
 
-    String relativePath = "Programa\\Clientes.csv";
+    String relativePath = "Programa\\Produtos.csv";
     String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
 
     File ProdutosBD = new File(relativePath);
