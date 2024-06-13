@@ -72,7 +72,7 @@ public class PedidoController {
             FileWriter PedidoBDgravar = new FileWriter(PedidosBD, false);
             PrintWriter gravador = new PrintWriter(PedidoBDgravar);
 
-            gravador.println("Id; nome; cnpj; telefone; endereco;");
+            gravador.println("Id; produto; cliente; metododePagamento; taxadeEntrega; status; observacoes;");
 
             for (Pedido c : listaPedidos) {
                 String linhaCSV = c.toCSV();
