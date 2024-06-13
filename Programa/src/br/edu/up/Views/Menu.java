@@ -6,6 +6,7 @@ import br.edu.up.Models.*;
 import br.edu.up.Controllers.*;
 
 public class Menu {
+    // controlers e leitor
     Scanner leitor = new Scanner(System.in);
     ClienteController clienteController = new ClienteController();
     ProdutoController produtoController = new ProdutoController();
@@ -13,6 +14,7 @@ public class Menu {
     FornecedorController fornecedorController = new FornecedorController();
     PedidoController pedidoController = new PedidoController();
 
+    // MENU PRINCIPAL -----------------------------------
     public void mostrar() {
 
         System.out.println("---------------------------");
@@ -50,7 +52,10 @@ public class Menu {
         }
 
     }
+    // FIM MENU PRINCIPAL -----------------------------------
 
+
+    // MENU PEDIDO -----------------------------------
     private void MenuPedido() {
         Scanner leitor = new Scanner(System.in);
 
@@ -95,41 +100,10 @@ public class Menu {
         }
         leitor.close();
     }
-
-    // função para cadastrar um pedido
-    public Pedido pedirDadosPedido() {
-        int novoId = pedidoController.retornarID();
-        novoId++;
-        
-        leitor.nextLine();
-
-        System.out.println("Informe os dados do produto:");
-        Produto novoProduto = pedirDadosProduto();
-        produtoController.adicionarProduto(novoProduto);
-
-        leitor.nextLine();
-        System.out.println("Informe os dados do cliente:");
-        Cliente novoCliente = pedirDadosCliente();
-        clienteController.adicionarCliente(novoCliente);
-
-        System.out.println("Informe o método de pagamento:");
-        String metododePagamento = leitor.nextLine();
-
-        System.out.println("Informe a taxa de entrega:");
-        int taxadeEntrega = leitor.nextInt();
-
-        System.out.println("Informe o status do pedido:");
-        String status = leitor.nextLine();
-        
-        System.out.println("Adicione observacoes sobre o pedido:");
-        String observacoes = leitor.nextLine();
-        
-        var pedidoToAdd = new Pedido(novoId, null, null, metododePagamento, taxadeEntrega, status, observacoes);
-        return pedidoToAdd;
-
-    }
+    // FIM MENU PEDIDO -----------------------------------
 
 
+    //  MENU FORNECEDOR -----------------------------------
     private void MenuFornecedor() {
         Scanner leitor = new Scanner(System.in);
 
@@ -174,28 +148,10 @@ public class Menu {
         }
         leitor.close();
     }
-
-    // função para cadastrar um fornecedor
-    public Fornecedor pedirDadosFornecedor() {
-        int novoId = fornecedorController.retornarID();
-        novoId++;
-
-        leitor.nextLine();
-        System.out.println("Informe o nome:");
-        String nome = leitor.nextLine();
-        System.out.println("Informe o cnpj:");
-        int cnpj = leitor.nextInt();
-        System.out.println("Informe o telefone:");
-        String telefone = leitor.nextLine();
-        Endereco novoendereco = pedirDadosEndereco();
-        enderecoController.adicionarEndereco(novoendereco);
-
-        var fornecedorToAdd = new Fornecedor(novoId, nome, cnpj, telefone);
-        return fornecedorToAdd;
-
-    }
+    // FIM MENU FORNECEDOR -----------------------------------
 
 
+    // MENU CLIENTE -----------------------------------
     public void MenuCliente() {
         Scanner leitor = new Scanner(System.in);
 
@@ -242,28 +198,10 @@ public class Menu {
         }
         leitor.close();
     }
+    // FIM MENU CLIENTE -----------------------------------
 
-    // função para cadastrar um cliente
-    public Cliente pedirDadosCliente() {
-        System.out.println("Informe o cpf:");
-        String cpf = leitor.nextLine();
-        System.out.println("Informe o nome:");
-        String nome = leitor.nextLine();
-        System.out.println("Informe a idade:");
-        int idade = leitor.nextInt();
-        Endereco novoendereco = pedirDadosEndereco();
-
-        int novoId = clienteController.retornarID();
-        novoId++;
-
-        novoendereco.setClienteId(novoId);
-        enderecoController.adicionarEndereco(novoendereco);
-
-        var clienteToAdd = new Cliente(novoId, nome, cpf, idade);
-        return clienteToAdd;
-
-    }
-
+    
+    // MENU PRODUTO -----------------------------------
     public void MenuProduto() {
 
         System.out.println("---------------------------");
@@ -297,7 +235,10 @@ public class Menu {
         }
 
     }
+    // FIM MENU PRODUTO -----------------------------------
 
+
+    // MENU ENDERECO -----------------------------------
     public void MenuEndereco() {
         Scanner leitor = new Scanner(System.in);
 
@@ -337,7 +278,33 @@ public class Menu {
         }
         leitor.close();
     }
+    // FIM MENU ENDERECO -----------------------------------
 
+
+    // FUNÇÕES
+
+    // função para cadastrar um cliente
+    public Cliente pedirDadosCliente() {
+        System.out.println("Informe o cpf:");
+        String cpf = leitor.nextLine();
+        System.out.println("Informe o nome:");
+        String nome = leitor.nextLine();
+        System.out.println("Informe a idade:");
+        int idade = leitor.nextInt();
+        Endereco novoendereco = pedirDadosEndereco();
+
+        int novoId = clienteController.retornarID();
+        novoId++;
+
+        novoendereco.setClienteId(novoId);
+        enderecoController.adicionarEndereco(novoendereco);
+
+        var clienteToAdd = new Cliente(novoId, nome, cpf, idade);
+        return clienteToAdd;
+
+    }
+
+    // função para cadastrar um produto
     public Produto pedirDadosProduto() {
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
@@ -345,7 +312,7 @@ public class Menu {
         double preco = leitor.nextDouble();
         System.out.println("Informe a quantidade:");
         int quantidade = leitor.nextInt();
-        System.out.println("Cadestre o fornecedor:");
+        System.out.println("Cadastre o fornecedor:");
         Fornecedor novoFornecedor = pedirDadosFornecedor();
 
         int novoId = produtoController.retornarID() + 1;
@@ -354,6 +321,7 @@ public class Menu {
 
     }
 
+    // função para cadastrar um endereço
     public Endereco pedirDadosEndereco() {
         leitor.nextLine();
         System.out.println("Informe a rua:");
@@ -379,6 +347,60 @@ public class Menu {
 
     }
 
+    // função para cadastrar um fornecedor
+    public Fornecedor pedirDadosFornecedor() {
+        int novoId = fornecedorController.retornarID();
+        novoId++;
+
+        leitor.nextLine();
+        System.out.println("Informe o nome:");
+        String nome = leitor.nextLine();
+        System.out.println("Informe o cnpj:");
+        int cnpj = leitor.nextInt();
+        System.out.println("Informe o telefone:");
+        String telefone = leitor.nextLine();
+        Endereco novoendereco = pedirDadosEndereco();
+        enderecoController.adicionarEndereco(novoendereco);
+
+        var fornecedorToAdd = new Fornecedor(novoId, nome, cnpj, telefone);
+        return fornecedorToAdd;
+
+    }
+
+    // função para cadastrar um pedido
+    public Pedido pedirDadosPedido() {
+        int novoId = pedidoController.retornarID();
+        novoId++;
+        
+        leitor.nextLine();
+
+        System.out.println("Informe os dados do produto:");
+        Produto novoProduto = pedirDadosProduto();
+        produtoController.adicionarProduto(novoProduto);
+
+        leitor.nextLine();
+        System.out.println("Informe os dados do cliente:");
+        Cliente novoCliente = pedirDadosCliente();
+        clienteController.adicionarCliente(novoCliente);
+
+        System.out.println("Informe o método de pagamento:");
+        String metododePagamento = leitor.nextLine();
+
+        System.out.println("Informe a taxa de entrega:");
+        int taxadeEntrega = leitor.nextInt();
+
+        System.out.println("Informe o status do pedido:");
+        String status = leitor.nextLine();
+        
+        System.out.println("Adicione observacoes sobre o pedido:");
+        String observacoes = leitor.nextLine();
+        
+        var pedidoToAdd = new Pedido(novoId, null, null, metododePagamento, taxadeEntrega, status, observacoes);
+        return pedidoToAdd;
+
+    }
+
+    // função para remover um produto
     public void removerProduto(int idProduto) {
         for (Produto produto : produtoController.listaProdutos) {
             if (produto.Id == idProduto) {
@@ -386,4 +408,6 @@ public class Menu {
             }
         }
     }
+
+    // FIM FUNÇÕES
 }
