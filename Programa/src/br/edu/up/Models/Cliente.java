@@ -4,6 +4,7 @@ public class Cliente extends BaseEntity {
     private String nome;
     private String cpf;
     private int idade;
+    private Endereco endereco;
 
     public Cliente(int id, String nome, String cpf, int idade) {
         super.Id = id;
@@ -12,11 +13,21 @@ public class Cliente extends BaseEntity {
         this.idade = idade;
     }
 
-    private Endereco endereco;
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + super.Id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", idade=" + idade +
+                ", endereco=" + (endereco != null ? endereco.toString() : "null") +
+                '}';
+    }
+
 
     // metodo para converter para csv
     public String toCSV(){
-        return super.Id + ";" + cpf + ";" + nome + ";" + idade + ";" + endereco.toCSV();
+        return super.Id + ";" + cpf + ";" + nome + ";" + idade;
     }
 
     // construtor

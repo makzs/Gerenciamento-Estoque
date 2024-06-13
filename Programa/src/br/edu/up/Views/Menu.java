@@ -213,8 +213,10 @@ public class Menu {
         switch (opcao) {
             case 1:
                 // cadastrar cliente
+                clienteController.carregarClientesDoArquivo();
                 Cliente novoCliente = pedirDadosCliente();
                 clienteController.adicionarCliente(novoCliente);
+                clienteController.LimparClientes();
                 MenuCliente();
                 break;
             case 2:
@@ -223,11 +225,11 @@ public class Menu {
                 System.out.println("Informe o ID do cliente que deseja remover:");
                 int idInformado = leitor.nextInt();
                 clienteController.removerCliente(idInformado);
+                clienteController.LimparClientes();
                 MenuCliente();
                 break;
             case 3:
                 // listar cliente
-                clienteController.carregarClientesDoArquivo();
                 clienteController.listarClientes();
                 MenuCliente();
                 break;

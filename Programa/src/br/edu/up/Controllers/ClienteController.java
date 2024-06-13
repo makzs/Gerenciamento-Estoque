@@ -17,6 +17,9 @@ public class ClienteController {
     String relativePath = "Programa\\Clientes.csv";
     String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Clientes.csv"; //path da maquina osorio
     File ClientesBD = new File(relativePath);
+
+    EnderecoController enderecoController = new EnderecoController();
+
     public List<Cliente> listaClientes = new ArrayList<>();
 
     // Método para carregar os clientes do arquivo CSV para a listaClientes
@@ -83,21 +86,38 @@ public class ClienteController {
     public void listarClientes(){
         try { 
 
-            Scanner leitor = new Scanner(ClientesBD);
-            leitor.nextLine();
+            // Scanner leitor = new Scanner(ClientesBD);
+            // leitor.nextLine();
 
 
-            while (leitor.hasNextLine()) {
-                String linha = leitor.nextLine();
-                System.out.println(linha);
+            // while (leitor.hasNextLine()) {
+            //     String linha = leitor.nextLine();
+            //     System.out.println(linha);
                 
 
+            // }
+
+            // leitor.close();
+
+            carregarClientesDoArquivo();
+
+            for (Cliente cliente : listaClientes) {
+                enderecoController.carregarEnderecosDoArquivo();
+                var endereco = enderecoController.BuscarPorClienteId(cliente.Id);
+                cliente.setEndereco(endereco);
+                System.out.println(cliente.toString());
             }
 
-            leitor.close();
-        } catch (FileNotFoundException x) {
+            listaClientes.clear();
+
+        } catch (Exception x) {
             System.out.println("O arquivo" + ClientesBD + " nao foi encontrado pois " + x.getCause());
         }
+    }
+
+    public void LimparClientes()
+    {
+        listaClientes.clear();
     }
 
     // metodo para gravar cliente
@@ -106,7 +126,7 @@ public class ClienteController {
             FileWriter ClienteBDgravar = new FileWriter(ClientesBD, false);
             PrintWriter gravador = new PrintWriter(ClienteBDgravar);
 
-            gravador.println("ID | cpf | nome | idade | endereco");
+            gravador.println("ID | cpf | nome | idade ");
 
             for (Cliente c : listaClientes) {
                 String linhaCSV = c.toCSV();
