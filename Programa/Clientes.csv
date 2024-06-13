@@ -1,10 +1,1 @@
-<<<<<<< HEAD
 ID | cpf | nome | idade 
-1;;test;24
-2;;joao;34
-3;;marcos;34
-=======
-ID | cpf | nome | idade | endereco
-1;123;cliente1;20;2;osorio;66;positivo;curitiba;parana;66666;1;1
-0;null;0.0;0;null
->>>>>>> 24478ab (Atualização ProutoController)
