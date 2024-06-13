@@ -15,7 +15,11 @@ import br.edu.up.Models.Fornecedor;
 public class ProdutoController {
 
     String relativePath = "Programa\\Produtos.csv";
+<<<<<<< HEAD
     String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
+=======
+    String oldPath = "C:\\Users\\snack\\Desktop\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
+>>>>>>> 24478ab (Atualização ProutoController)
 
     File ProdutosBD = new File(relativePath);
     
@@ -33,7 +37,13 @@ public class ProdutoController {
                 String nome = partes[1];
                 double preco = Double.parseDouble(partes[2]);
                 int quantidade = Integer.parseInt(partes[3]);
+<<<<<<< HEAD
                 Fornecedor fornecedor = null;
+=======
+                String fornecedorNome = partes[4];
+      
+                Fornecedor fornecedor = new Fornecedor(id, fornecedorNome, quantidade, fornecedorNome);
+>>>>>>> 24478ab (Atualização ProutoController)
                 Produto produto = new Produto(id, nome, preco, quantidade, fornecedor);
                 listaProdutos.add(produto);
             }
@@ -41,6 +51,8 @@ public class ProdutoController {
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Erro ao converter valor: " + e.getMessage());
         }
     }
 
@@ -107,17 +119,13 @@ public class ProdutoController {
         }
     }
 
-     public void removerProduto(int idProduto) {
-        for (Produto produto : listaProdutos) {
-            if (produto.Id == idProduto){
-                listaProdutos.remove(produto);
-            }
-        }
+    public void removerProduto(int idProduto) {
+        listaProdutos.removeIf(produto -> produto.getId() == idProduto);
 
         try {
             FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD);
             PrintWriter gravador = new PrintWriter(ProdutoBDgravar);
-            
+
             gravador.println("ID;nome;preço;quantidade;fornecedor");
 
             for (Produto p : listaProdutos) {
