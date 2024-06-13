@@ -47,6 +47,34 @@ public class EnderecoController {
         }
     }
 
+    public int retornarID(){
+        int ultimoID = 0;
+
+        try {
+            Scanner leitor = new Scanner(enderecoDB);
+            leitor.nextLine(); // Ignora o cabeçalho
+
+            String ultimaLinha = null;
+
+            while (leitor.hasNextLine()) {
+                ultimaLinha = leitor.nextLine();
+            }
+    
+            if (ultimaLinha != null) {
+                String[] partes = ultimaLinha.split(";");
+                ultimoID = Integer.parseInt(partes[0]);
+            }
+            leitor.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Erro ao converter ID para inteiro: " + e.getMessage());
+        }
+
+        return ultimoID;
+    }
+
+
     public void adicionarEndereco(Endereco end) {
         listaEnderecos.add(end);
         salvarCliente();

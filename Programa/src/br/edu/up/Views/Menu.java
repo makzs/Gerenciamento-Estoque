@@ -252,10 +252,13 @@ public class Menu {
         System.out.println("Informe a idade:");
         int idade = leitor.nextInt();
         Endereco novoendereco = pedirDadosEndereco();
-        enderecoController.adicionarEndereco(novoendereco);
 
         int novoId = clienteController.retornarID();
         novoId++;
+
+        novoendereco.setClienteId(novoId);
+        enderecoController.adicionarEndereco(novoendereco);
+
         var clienteToAdd = new Cliente(novoId, nome, cpf, idade);
         return clienteToAdd;
 
@@ -370,8 +373,8 @@ public class Menu {
         System.out.println("Informe o Id do fornecedor:");
         int fornecedorId = leitor.nextInt();
 
-        // int novoId = produtoController.retornarID() + 1;
-        var enderecoToAdd = new Endereco(2, rua, numero, complemento, cidade, estado, cep, clientId, fornecedorId);
+        int novoId = enderecoController.retornarID() + 1;
+        var enderecoToAdd = new Endereco(novoId, rua, numero, complemento, cidade, estado, cep, clientId, fornecedorId);
         return enderecoToAdd;
 
     }
