@@ -54,7 +54,6 @@ public class Menu {
     }
     // FIM MENU PRINCIPAL -----------------------------------
 
-
     // MENU PEDIDO -----------------------------------
     private void MenuPedido() {
         Scanner leitor = new Scanner(System.in);
@@ -102,8 +101,7 @@ public class Menu {
     }
     // FIM MENU PEDIDO -----------------------------------
 
-
-    //  MENU FORNECEDOR -----------------------------------
+    // MENU FORNECEDOR -----------------------------------
     private void MenuFornecedor() {
         Scanner leitor = new Scanner(System.in);
 
@@ -149,7 +147,6 @@ public class Menu {
         leitor.close();
     }
     // FIM MENU FORNECEDOR -----------------------------------
-
 
     // MENU CLIENTE -----------------------------------
     public void MenuCliente() {
@@ -200,7 +197,6 @@ public class Menu {
     }
     // FIM MENU CLIENTE -----------------------------------
 
-    
     // MENU PRODUTO -----------------------------------
     public void MenuProduto() {
 
@@ -244,7 +240,6 @@ public class Menu {
     }
     // FIM MENU PRODUTO -----------------------------------
 
-
     // MENU ENDERECO -----------------------------------
     public void MenuEndereco() {
         Scanner leitor = new Scanner(System.in);
@@ -267,7 +262,7 @@ public class Menu {
                 break;
             case 2:
                 // remover endereco
-                
+
                 break;
             case 3:
                 // buscar endereco
@@ -276,7 +271,7 @@ public class Menu {
                 enderecoController.carregarEnderecosDoArquivo();
                 var endereco = enderecoController.BuscarPorClienteId(clienteId);
                 System.out.println(endereco);
-              
+
                 break;
 
             default:
@@ -286,7 +281,6 @@ public class Menu {
         leitor.close();
     }
     // FIM MENU ENDERECO -----------------------------------
-
 
     // FUNÇÕES
 
@@ -314,7 +308,7 @@ public class Menu {
 
     // função para cadastrar um produto
     public Produto pedirDadosProduto() {
-        leitor.nextLine(); 
+        leitor.nextLine();
 
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
@@ -324,25 +318,24 @@ public class Menu {
 
         System.out.println("Informe a quantidade:");
         int quantidade = leitor.nextInt();
-        leitor.nextLine(); 
+        leitor.nextLine();
 
         // pedir apenas o ID e o nome do fornecedor
         System.out.println("Informe o ID do fornecedor:");
         int fornecedorId = leitor.nextInt();
-        leitor.nextLine(); 
+        leitor.nextLine();
 
         System.out.println("Informe o nome do fornecedor:");
         String fornecedorNome = leitor.nextLine();
 
-        Fornecedor fornecedor = new Fornecedor(fornecedorId, fornecedorNome); 
+        Fornecedor fornecedor = new Fornecedor(fornecedorId, fornecedorNome);
 
         // Criar o novo produto com os dados coletados
         int novoId = produtoController.retornarID() + 1;
-        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedor);
+        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedorId);
 
         return produtoToAdd;
     }
-
 
     // função para cadastrar um endereço
     public Endereco pedirDadosEndereco() {
@@ -394,7 +387,7 @@ public class Menu {
     public Pedido pedirDadosPedido() {
         int novoId = pedidoController.retornarID();
         novoId++;
-        
+
         leitor.nextLine();
 
         System.out.println("Informe os dados do produto:");
@@ -414,10 +407,10 @@ public class Menu {
 
         System.out.println("Informe o status do pedido:");
         String status = leitor.nextLine();
-        
+
         System.out.println("Adicione observacoes sobre o pedido:");
         String observacoes = leitor.nextLine();
-        
+
         var pedidoToAdd = new Pedido(novoId, null, null, metododePagamento, taxadeEntrega, status, observacoes);
         return pedidoToAdd;
 

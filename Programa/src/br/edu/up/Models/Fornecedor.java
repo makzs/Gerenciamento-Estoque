@@ -5,14 +5,13 @@ public class Fornecedor extends BaseEntity {
    private int cnpj;
    private String telefone;
 
-   
-   public Fornecedor (int id, String nome, int cnpj, String telefone) {
+   public Fornecedor(int id, String nome, int cnpj, String telefone) {
       super.Id = id;
       this.nome = nome;
       this.cnpj = cnpj;
       this.telefone = telefone;
    }
-   
+
    private Endereco endereco;
 
    public Fornecedor(int id, String nome, int cnpj, String telefone, Endereco endereco) {
@@ -24,12 +23,12 @@ public class Fornecedor extends BaseEntity {
    }
 
    public Fornecedor(int fornecedorId, String fornecedorNome) {
-    //TODO Auto-generated constructor stub
-}
+      // TODO Auto-generated constructor stub
+   }
 
-// metodo para converter para csv
-   public String toCSV(){
-      return super.Id + ";" + nome + ";" + cnpj + ";" + telefone + ";" + endereco.toCSV();
+   // metodo para converter para csv
+   public String toCSV() {
+      return super.Id + ";" + nome + ";" + cnpj + ";" + telefone;
    }
 
    public String getNome() {

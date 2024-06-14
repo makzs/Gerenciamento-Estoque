@@ -41,8 +41,8 @@ public class FornecedorController {
         }
     }
 
-     // metodo para listar fornecedores
-     public void listarFornecedor(){
+    // metodo para listar fornecedores
+    public void listarFornecedor() {
         try {
             Scanner leitor = new Scanner(FornecedoresBD);
             leitor.nextLine();
@@ -57,6 +57,17 @@ public class FornecedorController {
         }
     }
 
+    public Fornecedor BuscarPorFornecedorId(int fornecedorId) {
+        Fornecedor fEncontrado = null;
+        for (Fornecedor fornecedor : listaFornecedores) {
+            if (fornecedor.Id == fornecedorId) {
+                fEncontrado = fornecedor;
+                break; // Se encontrado, podemos interromper o loop
+            }
+        }
+        return fEncontrado;
+    }
+
     // adicionar fornecedor na lista e executa o metodo para salvar no arquivo csv
     public void adicionarFornecedor(Fornecedor fornecedor) {
         listaFornecedores.add(fornecedor);
@@ -69,7 +80,7 @@ public class FornecedorController {
             FileWriter FornecedorBDgravar = new FileWriter(FornecedoresBD, false);
             PrintWriter gravador = new PrintWriter(FornecedorBDgravar);
 
-            gravador.println("Id; nome; cnpj; telefone; endereco;");
+            gravador.println("Id; nome; cnpj; telefone; fornecedorId;");
 
             for (Fornecedor c : listaFornecedores) {
                 String linhaCSV = c.toCSV();
@@ -90,15 +101,14 @@ public class FornecedorController {
                 listaFornecedores.clear();
                 System.out.println("Fornecedor removido com sucesso");
                 break;
-            }
-            else{
+            } else {
                 System.out.println("Fornecedor não encontrado");
             }
         }
     }
 
     // metodo para auxiliar no cadastro de fornecedores (auto incremento de ID)
-    public int retornarID(){
+    public int retornarID() {
         int ultimoID = 0;
 
         try {
@@ -110,7 +120,7 @@ public class FornecedorController {
             while (leitor.hasNextLine()) {
                 ultimaLinha = leitor.nextLine();
             }
-    
+
             if (ultimaLinha != null) {
                 String[] partes = ultimaLinha.split(";");
                 ultimoID = Integer.parseInt(partes[0]);

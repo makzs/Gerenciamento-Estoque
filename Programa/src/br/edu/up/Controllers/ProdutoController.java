@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.edu.up.Models.Produto;
-import br.edu.up.Models.Fornecedor;
 
 public class ProdutoController {
 
@@ -18,13 +17,14 @@ public class ProdutoController {
     String oldPath = "C:\\Users\\snack\\Desktop\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
 
     File ProdutosBD = new File(relativePath);
-    
+
     public List<Produto> listaProdutos = new ArrayList<>();
+    FornecedorController fController = new FornecedorController();
 
     public void carregarProdutosDoArquivo() {
         try {
             Scanner scanner = new Scanner(ProdutosBD);
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();
@@ -33,10 +33,9 @@ public class ProdutoController {
                 String nome = partes[1];
                 double preco = Double.parseDouble(partes[2]);
                 int quantidade = Integer.parseInt(partes[3]);
-                String fornecedorNome = partes[4];
-      
-                Fornecedor fornecedor = new Fornecedor(id, fornecedorNome, quantidade, fornecedorNome);
-                Produto produto = new Produto(id, nome, preco, quantidade, fornecedor);
+                int fornercedorId = Integer.parseInt(partes[4]);
+
+                Produto produto = new Produto(id, nome, preco, quantidade, fornercedorId);
                 listaProdutos.add(produto);
             }
 
@@ -48,19 +47,19 @@ public class ProdutoController {
         }
     }
 
-    public int retornarID(){
+    public int retornarID() {
         int ultimoID = 0;
 
         try {
             Scanner leitor = new Scanner(ProdutosBD);
-            leitor.nextLine(); 
+            leitor.nextLine();
 
             String ultimaLinha = null;
 
             while (leitor.hasNextLine()) {
                 ultimaLinha = leitor.nextLine();
             }
-    
+
             if (ultimaLinha != null) {
                 String[] partes = ultimaLinha.split(";");
                 ultimoID = Integer.parseInt(partes[0]);
@@ -79,8 +78,8 @@ public class ProdutoController {
         salvarProduto();
     }
 
-    public void listaProdutos(){
-        try { 
+    public void listaProdutos() {
+        try {
 
             Scanner leitor = new Scanner(ProdutosBD);
             leitor.nextLine();
@@ -101,8 +100,7 @@ public class ProdutoController {
             FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD, false);
             PrintWriter gravador = new PrintWriter(ProdutoBDgravar);
 
-            gravador.println("ID | nome | preço | quantidade | fornecedor");
-
+            gravador.println("ID | nome | preço | quantidade | fornecedorId");
 
             for (Produto c : listaProdutos) {
                 String linhaCSV = c.toCSV();
@@ -115,23 +113,21 @@ public class ProdutoController {
     }
 
     public void removerProduto(int idProduto) {
-        for(Produto produto : listaProdutos){
+        for (Produto produto : listaProdutos) {
             if (produto.getId() == idProduto) {
                 listaProdutos.remove(produto);
                 salvarProduto();
                 listaProdutos.clear();
                 System.out.println("Produto removido com sucesso");
                 break;
-            }
-            else {
+            } else {
                 System.out.println("Produto não encontrado");
-            } 
+            }
         }
-        
+
     }
 
-    public void LimparProdutos()
-    {
+    public void LimparProdutos() {
         listaProdutos.clear();
     }
 }
