@@ -121,8 +121,10 @@ public class Menu {
         switch (opcao) {
             case 1:
                 // cadastrar Fornecedor
+                fornecedorController.carregarFornecedorDoArquivo();
                 Fornecedor novoFornecedor = pedirDadosFornecedor();
                 fornecedorController.adicionarFornecedor(novoFornecedor);
+                fornecedorController.LimparFornecedores();
                 MenuFornecedor();
                 break;
             case 2:
@@ -131,6 +133,7 @@ public class Menu {
                 System.out.println("Informe o ID do fornecedor que deseja remover:");
                 int idInformado = leitor.nextInt();
                 fornecedorController.removerFornecedor(idInformado);
+                fornecedorController.LimparFornecedores();
                 MenuFornecedor();
                 break;
             case 3:
@@ -385,7 +388,7 @@ public class Menu {
         Endereco novoendereco = pedirDadosEndereco();
         enderecoController.adicionarEndereco(novoendereco);
 
-        var fornecedorToAdd = new Fornecedor(novoId, nome, cnpj, telefone);
+        Fornecedor fornecedorToAdd = new Fornecedor(novoId, nome, cnpj, telefone);
         return fornecedorToAdd;
 
     }

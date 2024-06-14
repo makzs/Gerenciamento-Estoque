@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.edu.up.Models.Fornecedor;
-import br.edu.up.Models.Endereco;
 
 public class FornecedorController {
     String relativePath = "Programa\\Fornecedores.csv";
@@ -30,8 +29,8 @@ public class FornecedorController {
                 String nome = partes[1];
                 int cnpj = Integer.parseInt(partes[2]);
                 String telefone = (partes[3]);
-                Endereco endereco = null;
-                Fornecedor fornecedor = new Fornecedor(id, nome, cnpj, telefone, endereco);
+                Fornecedor fornecedor = new Fornecedor(id, nome, cnpj, telefone);
+                System.out.println(fornecedor.getTelefone());
                 listaFornecedores.add(fornecedor);
             }
 
@@ -69,7 +68,7 @@ public class FornecedorController {
             FileWriter FornecedorBDgravar = new FileWriter(FornecedoresBD, false);
             PrintWriter gravador = new PrintWriter(FornecedorBDgravar);
 
-            gravador.println("Id; nome; cnpj; telefone; endereco;");
+            gravador.println("Id | nome | cnpj | telefone |");
 
             for (Fornecedor c : listaFornecedores) {
                 String linhaCSV = c.toCSV();
@@ -123,5 +122,10 @@ public class FornecedorController {
         }
 
         return ultimoID;
+    }
+
+    public void LimparFornecedores()
+    {
+        listaFornecedores.clear();
     }
 }
