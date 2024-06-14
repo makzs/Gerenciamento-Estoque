@@ -1,4 +1,1 @@
-ID; nome; preço; quantidade; fornecedor
-5;alkhgas;129058.0;59012;br.edu.up.Models.Fornecedor@7c3df479
-ID; nome; preço; quantidade; fornecedor
-6;aopjsgasj;902851.0;59821;br.edu.up.Models.Fornecedor@7c3df479
+ID | nome | preço | quantidade | fornecedor

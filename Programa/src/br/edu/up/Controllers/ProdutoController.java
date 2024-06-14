@@ -101,7 +101,7 @@ public class ProdutoController {
             FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD, false);
             PrintWriter gravador = new PrintWriter(ProdutoBDgravar);
 
-            gravador.println("ID; nome; preço; quantidade; fornecedor");
+            gravador.println("ID | nome | preço | quantidade | fornecedor");
 
 
             for (Produto c : listaProdutos) {
@@ -116,15 +116,22 @@ public class ProdutoController {
 
     public void removerProduto(int idProduto) {
         for(Produto produto : listaProdutos){
-            if (produto.Id == idProduto) {
+            if (produto.getId() == idProduto) {
                 listaProdutos.remove(produto);
                 salvarProduto();
                 listaProdutos.clear();
                 System.out.println("Produto removido com sucesso");
                 break;
-            } else {
-                System.out.println("Produto não encontrado");
             }
+            else {
+                System.out.println("Produto não encontrado");
+            } 
         }
+        
+    }
+
+    public void LimparProdutos()
+    {
+        listaProdutos.clear();
     }
 }

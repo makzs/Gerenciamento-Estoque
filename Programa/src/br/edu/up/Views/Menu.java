@@ -216,17 +216,24 @@ public class Menu {
 
         switch (opcao) {
             case 1:
+                produtoController.carregarProdutosDoArquivo();
                 Produto novoProduto = pedirDadosProduto();
                 produtoController.adicionarProduto(novoProduto);
+                produtoController.LimparProdutos();
+                MenuProduto();
                 break;
             case 2:
+                produtoController.carregarProdutosDoArquivo();
                 System.out.println("Informe o ID do produto que deseja remover: ");
                 int idInformado = leitor.nextInt();
-                removerProduto(idInformado);
+                produtoController.removerProduto(idInformado);
+                produtoController.LimparProdutos();
+                MenuProduto();
                 break;
             case 3:
                 produtoController.carregarProdutosDoArquivo();
                 produtoController.listaProdutos();
+                MenuProduto();
                 break;
 
             default:
@@ -285,6 +292,7 @@ public class Menu {
 
     // função para cadastrar um cliente
     public Cliente pedirDadosCliente() {
+        leitor.nextLine();
         System.out.println("Informe o cpf:");
         String cpf = leitor.nextLine();
         System.out.println("Informe o nome:");
@@ -414,13 +422,6 @@ public class Menu {
         return pedidoToAdd;
 
     }
-
-    // função para remover um produto
-    public void removerProduto(int idProduto) {
-    // Remover o produto da lista usando o método da classe ProdutoController
-    produtoController.removerProduto(idProduto);
-}
-
 
     // FIM FUNÇÕES
 }
