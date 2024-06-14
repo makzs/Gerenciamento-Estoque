@@ -18,6 +18,9 @@ public class PedidoController {
     File PedidosBD = new File(relativePath);
     public List<Pedido> listaPedidos = new ArrayList<>();
 
+    /* ProdutoController produtoController = new ProdutoController();
+    ClienteController clienteController = new ClienteController(); */
+
     // Método para carregar os pedidos do arquivo CSV para a listaPedidos
     public void carregarPedidoDoArquivo() {
         try {
@@ -28,13 +31,19 @@ public class PedidoController {
                 String linha = scanner.nextLine();
                 String[] partes = linha.split(";");
                 int id = Integer.parseInt(partes[0]);
-                Produto produto = null;
-                Cliente cliente = null;
+                System.out.println("Digite o ID do produto a ser carregado: ");
+                int produtoId = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Digite o ID do cliente a ser carregado: ");
+                int  clienteId = scanner.nextInt();
+                scanner.nextLine();
                 String metododePagamento = (partes[3]);
                 int taxadeEntrega = Integer.parseInt(partes[4]);
+                scanner.nextLine();
                 String status = (partes[5]);
                 String observacoes = (partes[6]);
-                Pedido pedido = new Pedido(id, produto, cliente, metododePagamento, taxadeEntrega, status, observacoes);
+                
+                Pedido pedido = new Pedido(id, produtoId, clienteId, metododePagamento, taxadeEntrega, status, observacoes);
                 listaPedidos.add(pedido);
             }
 
@@ -72,7 +81,7 @@ public class PedidoController {
             FileWriter PedidoBDgravar = new FileWriter(PedidosBD, false);
             PrintWriter gravador = new PrintWriter(PedidoBDgravar);
 
-            gravador.println("Id; produto; cliente; metododePagamento; taxadeEntrega; status; observacoes;");
+            gravador.println("Id; produtoId; clienteId; metododePagamento; taxadeEntrega; status; observacoes;");
 
             for (Pedido c : listaPedidos) {
                 String linhaCSV = c.toCSV();
