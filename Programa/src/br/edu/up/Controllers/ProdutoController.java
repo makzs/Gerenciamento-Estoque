@@ -98,8 +98,11 @@ public class ProdutoController {
 
     public void salvarProduto() {
         try {
-            FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD, true);
+            FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD, false);
             PrintWriter gravador = new PrintWriter(ProdutoBDgravar);
+
+            gravador.println("ID; nome; preço; quantidade; fornecedor");
+
 
             for (Produto c : listaProdutos) {
                 String linhaCSV = c.toCSV();
@@ -112,23 +115,16 @@ public class ProdutoController {
     }
 
     public void removerProduto(int idProduto) {
-        listaProdutos.removeIf(produto -> produto.getId() == idProduto);
-
-        try {
-            FileWriter ProdutoBDgravar = new FileWriter(ProdutosBD);
-            PrintWriter gravador = new PrintWriter(ProdutoBDgravar);
-
-            gravador.println("ID;nome;preço;quantidade;fornecedor");
-
-            for (Produto p : listaProdutos) {
-                String linhaCSV = p.toCSV();
-                gravador.println(linhaCSV);
+        for(Produto produto : listaProdutos){
+            if (produto.Id == idProduto) {
+                listaProdutos.remove(produto);
+                salvarProduto();
+                listaProdutos.clear();
+                System.out.println("Produto removido com sucesso");
+                break;
+            } else {
+                System.out.println("Produto não encontrado");
             }
-
-            gravador.close();
-        } catch (IOException e) {
-            System.out.println("Erro de IO: " + e.getMessage());
         }
     }
-    
 }
