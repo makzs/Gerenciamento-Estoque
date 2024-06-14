@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import br.edu.up.Models.Cliente;
 import br.edu.up.Models.Pedido;
-import br.edu.up.Models.Produto;
 
 public class PedidoController {
     String relativePath = "Programa\\Pedidos.csv";
@@ -42,7 +40,7 @@ public class PedidoController {
                 scanner.nextLine();
                 String status = (partes[5]);
                 String observacoes = (partes[6]);
-                
+
                 Pedido pedido = new Pedido(id, produtoId, clienteId, metododePagamento, taxadeEntrega, status, observacoes);
                 listaPedidos.add(pedido);
             }
