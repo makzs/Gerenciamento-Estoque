@@ -4,6 +4,8 @@ public class Pedido extends BaseEntity {
 
    private Produto produto;
    private Cliente cliente;
+   private int produtoid;
+   private int clienteId;
    private String metododePagamento;
    private int taxadeEntrega;
    private String status; /*se o pedido ta sendo encaminhado, esta sendo preparado */
@@ -29,9 +31,19 @@ public class Pedido extends BaseEntity {
       this.observacoes = observacoes;
    }
 
+   public Pedido(int id, int produtoid, int clienteId, String metododePagamento, int taxadeEntrega, String status, String observacoes) {
+            super.Id = id;
+            this.produtoid = produtoid;
+            this.clienteId = clienteId;
+            this.metododePagamento = metododePagamento;
+            this.taxadeEntrega = taxadeEntrega;
+            this.status = status;
+            this.observacoes = observacoes;
+   }
+
    // metodo para converter para csv
    public String toCSV(){
-      return super.Id + ";" + produto + ";" + cliente + ";" + metododePagamento + ";" + taxadeEntrega + ";" + status + ";" + observacoes + ";";
+      return super.Id + ";" + produtoid + ";" + clienteId + ";" + metododePagamento + ";" + taxadeEntrega + ";" + status + ";" + observacoes + ";";
    }
 
    public Produto getProduto() {
@@ -81,4 +93,22 @@ public class Pedido extends BaseEntity {
    public void setObservacoes(String observacoes) {
       this.observacoes = observacoes;
    }
+
+   public int getProdutoid() {
+      return produtoid;
+   }
+
+   public void setProdutoid(int produtoid) {
+      this.produtoid = produtoid;
+   }
+
+   public int getClienteId() {
+      return clienteId;
+   }
+
+   public void setClienteId(int clienteId) {
+      this.clienteId = clienteId;
+   }
+
+   
 }
