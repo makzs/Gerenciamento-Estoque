@@ -29,7 +29,7 @@ public class Fornecedor extends BaseEntity {
 
 // metodo para converter para csv
    public String toCSV(){
-      return super.Id + ";" + cnpj + ";" + nome + ";" + telefone;
+      return super.Id + ";" + nome + ";" + cnpj + ";" + telefone;
    }
 
    public String getNome() {

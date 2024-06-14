@@ -381,10 +381,10 @@ public class Menu {
         leitor.nextLine();
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
-        System.out.println("Informe o cnpj:");
-        int cnpj = leitor.nextInt();
         System.out.println("Informe o telefone:");
         String telefone = leitor.nextLine();
+        System.out.println("Informe o cnpj:");
+        int cnpj = leitor.nextInt();
         Endereco novoendereco = pedirDadosEndereco();
         enderecoController.adicionarEndereco(novoendereco);
 

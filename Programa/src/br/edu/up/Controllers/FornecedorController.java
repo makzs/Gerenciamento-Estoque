@@ -28,7 +28,7 @@ public class FornecedorController {
                 int id = Integer.parseInt(partes[0]);
                 String nome = partes[1];
                 int cnpj = Integer.parseInt(partes[2]);
-                String telefone = (partes[3]);
+                String telefone = partes[3];
                 Fornecedor fornecedor = new Fornecedor(id, nome, cnpj, telefone);
                 System.out.println(fornecedor.getTelefone());
                 listaFornecedores.add(fornecedor);
