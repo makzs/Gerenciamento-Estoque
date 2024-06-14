@@ -328,14 +328,9 @@ public class Menu {
         int fornecedorId = leitor.nextInt();
         leitor.nextLine();
 
-        System.out.println("Informe o nome do fornecedor:");
-        String fornecedorNome = leitor.nextLine();
-
-        Fornecedor fornecedor = new Fornecedor(fornecedorId, fornecedorNome);
-
         // Criar o novo produto com os dados coletados
         int novoId = produtoController.retornarID() + 1;
-        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedor);
+        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedorId);
 
         return produtoToAdd;
     }
