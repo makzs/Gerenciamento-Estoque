@@ -306,20 +306,35 @@ public class Menu {
 
     // função para cadastrar um produto
     public Produto pedirDadosProduto() {
+        leitor.nextLine(); 
+
         System.out.println("Informe o nome:");
         String nome = leitor.nextLine();
+
         System.out.println("Informe o preço:");
         double preco = leitor.nextDouble();
+
         System.out.println("Informe a quantidade:");
         int quantidade = leitor.nextInt();
-        System.out.println("Cadastre o fornecedor:");
-        Fornecedor novoFornecedor = pedirDadosFornecedor();
+        leitor.nextLine(); 
 
+        // pedir apenas o ID e o nome do fornecedor
+        System.out.println("Informe o ID do fornecedor:");
+        int fornecedorId = leitor.nextInt();
+        leitor.nextLine(); 
+
+        System.out.println("Informe o nome do fornecedor:");
+        String fornecedorNome = leitor.nextLine();
+
+        Fornecedor fornecedor = new Fornecedor(fornecedorId, fornecedorNome); 
+
+        // Criar o novo produto com os dados coletados
         int novoId = produtoController.retornarID() + 1;
-        var produtotoAdd = new Produto(novoId, nome, preco, quantidade, novoFornecedor);
-        return produtotoAdd;
+        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedor);
 
+        return produtoToAdd;
     }
+
 
     // função para cadastrar um endereço
     public Endereco pedirDadosEndereco() {
@@ -402,12 +417,10 @@ public class Menu {
 
     // função para remover um produto
     public void removerProduto(int idProduto) {
-        for (Produto produto : produtoController.listaProdutos) {
-            if (produto.Id == idProduto) {
-                removerProduto(idProduto);
-            }
-        }
-    }
+    // Remover o produto da lista usando o método da classe ProdutoController
+    produtoController.removerProduto(idProduto);
+}
+
 
     // FIM FUNÇÕES
 }

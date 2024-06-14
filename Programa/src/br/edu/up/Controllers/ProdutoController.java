@@ -15,11 +15,7 @@ import br.edu.up.Models.Fornecedor;
 public class ProdutoController {
 
     String relativePath = "Programa\\Produtos.csv";
-<<<<<<< HEAD
-    String oldPath = "C:\\Users\\autologon\\Desktop\\teste\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
-=======
     String oldPath = "C:\\Users\\snack\\Desktop\\Gerenciamento-Estoque\\Programa\\Produtos.csv";
->>>>>>> 24478ab (Atualização ProutoController)
 
     File ProdutosBD = new File(relativePath);
     
@@ -37,13 +33,9 @@ public class ProdutoController {
                 String nome = partes[1];
                 double preco = Double.parseDouble(partes[2]);
                 int quantidade = Integer.parseInt(partes[3]);
-<<<<<<< HEAD
-                Fornecedor fornecedor = null;
-=======
                 String fornecedorNome = partes[4];
       
                 Fornecedor fornecedor = new Fornecedor(id, fornecedorNome, quantidade, fornecedorNome);
->>>>>>> 24478ab (Atualização ProutoController)
                 Produto produto = new Produto(id, nome, preco, quantidade, fornecedor);
                 listaProdutos.add(produto);
             }
@@ -138,4 +130,5 @@ public class ProdutoController {
             System.out.println("Erro de IO: " + e.getMessage());
         }
     }
+    
 }
