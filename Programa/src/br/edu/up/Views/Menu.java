@@ -335,7 +335,7 @@ public class Menu {
 
         // Criar o novo produto com os dados coletados
         int novoId = produtoController.retornarID() + 1;
-        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedorId);
+        Produto produtoToAdd = new Produto(novoId, nome, preco, quantidade, fornecedor);
 
         return produtoToAdd;
     }
