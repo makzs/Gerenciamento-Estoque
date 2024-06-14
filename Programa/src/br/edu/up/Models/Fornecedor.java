@@ -22,10 +22,6 @@ public class Fornecedor extends BaseEntity {
       this.endereco = endereco;
    }
 
-   public Fornecedor(int fornecedorId, String fornecedorNome) {
-      // TODO Auto-generated constructor stub
-   }
-
    // metodo para converter para csv
    public String toCSV() {
       return super.Id + ";" + nome + ";" + cnpj + ";" + telefone;
