@@ -77,7 +77,7 @@ public class EnderecoController {
 
     public void adicionarEndereco(Endereco end) {
         listaEnderecos.add(end);
-        salvarCliente();
+        salvarEndereco();
     }
 
     public Endereco BuscarPorFornecedorId(int fornecedorId) {
@@ -102,12 +102,14 @@ public class EnderecoController {
         return enderecoEncontrado;
     }
 
-    public void salvarCliente() {
+    public void salvarEndereco() {
         try {
             FileWriter ClienteBDgravar = new FileWriter(enderecoDB, true);
             PrintWriter gravador = new PrintWriter(ClienteBDgravar);
 
-            for (var e : listaEnderecos) {
+            gravador.println("Id | rua | numero | complemento | cidade | estado | cep | ClienteId | FornecedorId |");
+
+            for (Endereco e : listaEnderecos) {
                 String linhaCSV = e.toCSV();
                 gravador.println(linhaCSV);
             }
