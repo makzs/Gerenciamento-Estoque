@@ -30,10 +30,8 @@ public class PedidoController {
                 String[] partes = linha.split(";");
                 int id = Integer.parseInt(partes[0]);
                 scanner.nextLine();
-                System.out.println("Digite o ID do produto a ser carregado: ");
                 int produtoId = Integer.parseInt(partes[1]);
                 scanner.nextLine();
-                System.out.println("Digite o ID do cliente a ser carregado: ");
                 int  clienteId = Integer.parseInt(partes[2]);
                 scanner.nextLine();
                 String metododePagamento = (partes[3]);
