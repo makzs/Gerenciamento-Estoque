@@ -29,6 +29,7 @@ public class PedidoController {
                 String linha = scanner.nextLine();
                 String[] partes = linha.split(";");
                 int id = Integer.parseInt(partes[0]);
+                scanner.nextLine();
                 System.out.println("Digite o ID do produto a ser carregado: ");
                 int produtoId = Integer.parseInt(partes[1]);
                 scanner.nextLine();
