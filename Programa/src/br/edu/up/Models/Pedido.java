@@ -4,7 +4,7 @@ public class Pedido extends BaseEntity {
 
    private Produto produto;
    private Cliente cliente;
-   private int produtoid;
+   private int produtoId;
    private int clienteId;
    private String metododePagamento;
    private int taxadeEntrega;
@@ -31,9 +31,9 @@ public class Pedido extends BaseEntity {
       this.observacoes = observacoes;
    }
 
-   public Pedido(int id, int produtoid, int clienteId, String metododePagamento, int taxadeEntrega, String status, String observacoes) {
+   public Pedido(int id, int produtoId, int clienteId, String metododePagamento, int taxadeEntrega, String status, String observacoes) {
             super.Id = id;
-            this.produtoid = produtoid;
+            this.produtoId = produtoId;
             this.clienteId = clienteId;
             this.metododePagamento = metododePagamento;
             this.taxadeEntrega = taxadeEntrega;
@@ -41,11 +41,25 @@ public class Pedido extends BaseEntity {
             this.observacoes = observacoes;
    }
 
+   @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + super.Id +
+                ", produtoId='" + produtoId + '\'' +
+                ", clienteId='" + clienteId + '\'' +
+                ", metododePagamento=" + metododePagamento +
+                ", taxadeEntrega=" + taxadeEntrega +
+                ", status=" + status +
+                ", observacoes=" + observacoes +
+                '}';
+    }
+
    // metodo para converter para csv
    public String toCSV(){
-      return super.Id + ";" + produtoid + ";" + clienteId + ";" + metododePagamento + ";" + taxadeEntrega + ";" + status + ";" + observacoes + ";";
+      return super.Id + ";" + produtoId + ";" + clienteId + ";" + metododePagamento + ";" + taxadeEntrega + ";" + status + ";" + observacoes + ";";
    }
 
+   //getters and setters
    public Produto getProduto() {
       return produto;
    }
@@ -95,11 +109,11 @@ public class Pedido extends BaseEntity {
    }
 
    public int getProdutoid() {
-      return produtoid;
+      return produtoId;
    }
 
-   public void setProdutoid(int produtoid) {
-      this.produtoid = produtoid;
+   public void setProdutoid(int produtoId) {
+      this.produtoId = produtoId;
    }
 
    public int getClienteId() {
