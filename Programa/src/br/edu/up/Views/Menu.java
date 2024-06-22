@@ -391,20 +391,24 @@ public class Menu {
         System.out.println("Informe os dados do produto:");
         Produto novoProduto = pedirDadosProduto();
         produtoController.adicionarProduto(novoProduto);
-
         leitor.nextLine();
+
         System.out.println("Informe os dados do cliente:");
         Cliente novoCliente = pedirDadosCliente();
         clienteController.adicionarCliente(novoCliente);
+        leitor.nextLine();
 
         System.out.println("Informe o método de pagamento:");
         String metododePagamento = leitor.nextLine();
+        leitor.nextLine();
 
         System.out.println("Informe a taxa de entrega:");
         int taxadeEntrega = leitor.nextInt();
-
+        leitor.nextLine();
+        
         System.out.println("Informe o status do pedido:");
         String status = leitor.nextLine();
+        leitor.nextLine();
 
         System.out.println("Adicione observacoes sobre o pedido:");
         String observacoes = leitor.nextLine();
