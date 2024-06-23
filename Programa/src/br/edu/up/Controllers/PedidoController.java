@@ -21,34 +21,35 @@ public class PedidoController {
 
     // Método para carregar os pedidos do arquivo CSV para a listaPedidos
     public void carregarPedidoDoArquivo() {
+        listaPedidos.clear(); // Limpar a lista antes de carregar os pedidos do arquivo
         try {
             Scanner scanner = new Scanner(PedidosBD);
-            scanner.nextLine();
-
+            if (scanner.hasNextLine()) {
+                scanner.nextLine(); // Ignorar o cabeçalho
+            }
+    
             while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();
                 String[] partes = linha.split(";");
                 int id = Integer.parseInt(partes[0]);
-                scanner.nextLine();
                 int produtoId = Integer.parseInt(partes[1]);
-                scanner.nextLine();
-                int  clienteId = Integer.parseInt(partes[2]);
-                scanner.nextLine();
-                String metododePagamento = (partes[3]);
+                int clienteId = Integer.parseInt(partes[2]);
+                String metododePagamento = partes[3];
                 int taxadeEntrega = Integer.parseInt(partes[4]);
-                scanner.nextLine();
-                String status = (partes[5]);
-                String observacoes = (partes[6]);
-
+                String status = partes[5];
+                String observacoes = partes[6];
+    
                 Pedido pedido = new Pedido(id, produtoId, clienteId, metododePagamento, taxadeEntrega, status, observacoes);
                 listaPedidos.add(pedido);
             }
-
+    
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Erro ao converter um valor para inteiro: " + e.getMessage());
         }
-    }
+    }    
 
      // metodo para listar pedidos
      public void listarPedido(){
