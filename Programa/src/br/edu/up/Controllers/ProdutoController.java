@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import br.edu.up.Models.Endereco;
 import br.edu.up.Models.Produto;
 
 public class ProdutoController {
@@ -45,6 +46,17 @@ public class ProdutoController {
         } catch (NumberFormatException e) {
             System.out.println("Erro ao converter valor: " + e.getMessage());
         }
+    }
+
+    public Produto BuscarPorId(int produtoId) {
+        Produto pEncontrado = null;
+        for (Produto produto : listaProdutos) {
+            if (produto.getId() == produtoId) {
+                pEncontrado = produto;
+                break; // Se encontrado, podemos interromper o loop
+            }
+        }
+        return pEncontrado;
     }
 
     public int retornarID() {

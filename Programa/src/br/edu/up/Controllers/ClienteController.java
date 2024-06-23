@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import br.edu.up.Models.Cliente;
 import br.edu.up.Models.Endereco;
+import br.edu.up.Models.Produto;
 
 public class ClienteController {
 
@@ -151,9 +152,18 @@ public class ClienteController {
             else{
                 System.out.println("Cliente nao encontrado");
             }
+        }   
+    }
+
+    public Cliente BuscarPorId(int clienteId) {
+        Cliente cEncontrado = null;
+        for (Cliente cliente : listaClientes) {
+            if (cliente.Id == clienteId) {
+                cEncontrado = cliente;
+                break; // Se encontrado, podemos interromper o loop
+            }
         }
-    
-        
+        return cEncontrado;
     }
     
 

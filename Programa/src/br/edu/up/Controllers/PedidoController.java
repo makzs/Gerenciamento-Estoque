@@ -16,8 +16,8 @@ public class PedidoController {
     File PedidosBD = new File(relativePath);
     public List<Pedido> listaPedidos = new ArrayList<>();
 
-    /* ProdutoController produtoController = new ProdutoController();
-    ClienteController clienteController = new ClienteController(); */
+    ProdutoController produtoController = new ProdutoController();
+    ClienteController clienteController = new ClienteController(); 
 
     // Método para carregar os pedidos do arquivo CSV para a listaPedidos
     public void carregarPedidoDoArquivo() {
@@ -38,6 +38,15 @@ public class PedidoController {
                 int taxadeEntrega = Integer.parseInt(partes[4]);
                 String status = partes[5];
                 String observacoes = partes[6];
+
+                produtoController.carregarProdutosDoArquivo();
+                clienteController.carregarClientesDoArquivo();
+
+                var produtoDoPedido = produtoController.BuscarPorId(produtoId);
+                var clienteDoPedido = clienteController.BuscarPorId(clienteId);
+
+                // produtoController.LimparProdutos();
+                // clienteController.LimparClientes();
     
                 Pedido pedido = new Pedido(id, produtoId, clienteId, metododePagamento, taxadeEntrega, status, observacoes);
                 listaPedidos.add(pedido);
