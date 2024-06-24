@@ -42,8 +42,6 @@ public class PedidoController {
                 produtoController.carregarProdutosDoArquivo();
                 clienteController.carregarClientesDoArquivo();
 
-                var produtoDoPedido = produtoController.BuscarPorId(produtoId);
-                var clienteDoPedido = clienteController.BuscarPorId(clienteId);
 
                 // produtoController.LimparProdutos();
                 // clienteController.LimparClientes();

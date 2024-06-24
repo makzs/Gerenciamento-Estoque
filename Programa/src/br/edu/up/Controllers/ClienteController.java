@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 import br.edu.up.Models.Cliente;
 import br.edu.up.Models.Endereco;
-import br.edu.up.Models.Produto;
 
 public class ClienteController {
 

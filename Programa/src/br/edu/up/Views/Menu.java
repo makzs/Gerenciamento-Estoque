@@ -209,6 +209,7 @@ public class Menu {
         System.out.println("1. Adicionar Produto");
         System.out.println("2. Remover Produto");
         System.out.println("3. Listar Produtos");
+        System.out.println("4. Sair");
         System.out.println("---------------------------");
         System.out.println("Opção: ");
         int opcao = leitor.nextInt();
@@ -234,7 +235,9 @@ public class Menu {
                 produtoController.LimparProdutos();
                 MenuProduto();
                 break;
-
+            case 4:
+                mostrar();
+                break;
             default:
                 System.out.println("Opção invalida!");
                 break;
@@ -253,6 +256,7 @@ public class Menu {
         System.out.println("1. Adicionar Endereço");
         System.out.println("2. Remover Endereço");
         System.out.println("3. Listar Endereço");
+        System.out.println("4. Sair");
         System.out.println("---------------------------");
         System.out.println("Opção: ");
         int opcao = leitor.nextInt();
@@ -276,7 +280,9 @@ public class Menu {
                 System.out.println(endereco);
 
                 break;
-
+            case 4:
+                mostrar();
+                break;
             default:
                 System.out.println("Opção invalida!");
                 break;

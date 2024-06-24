@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import br.edu.up.Models.Cliente;
-import br.edu.up.Models.Endereco;
 import br.edu.up.Models.Produto;
 
 public class ProdutoController {
@@ -141,8 +139,6 @@ public class ProdutoController {
                 listaProdutos.clear();
                 System.out.println("Produto removido com sucesso");
                 break;
-            } else {
-                System.out.println("Produto não encontrado");
             }
         }
 
