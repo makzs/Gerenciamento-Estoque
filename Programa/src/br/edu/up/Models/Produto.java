@@ -25,6 +25,18 @@ public class Produto extends BaseEntity {
         this.fornecedor = fornecedor;
     }
 
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", preco=" + preco +
+                ", quantidade=" + quantidade +
+                ", fornecedor=" + fornecedor +
+                ", fornecedorId=" + fornecedorId +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

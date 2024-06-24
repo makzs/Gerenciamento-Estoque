@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import br.edu.up.Models.Cliente;
 import br.edu.up.Models.Endereco;
 import br.edu.up.Models.Produto;
 
@@ -93,16 +94,24 @@ public class ProdutoController {
     public void listaProdutos() {
         try {
 
-            Scanner leitor = new Scanner(ProdutosBD);
-            leitor.nextLine();
+            // Scanner leitor = new Scanner(ProdutosBD);
+            // leitor.nextLine();
 
-            while (leitor.hasNextLine()) {
-                String linha = leitor.nextLine();
-                System.out.println(linha);
+            // while (leitor.hasNextLine()) {
+            // String linha = leitor.nextLine();
+            // System.out.println(linha);
+            // }
+
+            carregarProdutosDoArquivo();
+
+            for (Produto p : listaProdutos) {
+
+                System.out.println(p.toString());
             }
 
-            leitor.close();
-        } catch (FileNotFoundException x) {
+            listaProdutos.clear();
+
+        } catch (Exception x) {
             System.out.println("O arquivo" + ProdutosBD + " nao foi encontrado pois " + x.getCause());
         }
     }

@@ -230,8 +230,8 @@ public class Menu {
                 MenuProduto();
                 break;
             case 3:
-                produtoController.carregarProdutosDoArquivo();
                 produtoController.listaProdutos();
+                produtoController.LimparProdutos();
                 MenuProduto();
                 break;
 
@@ -404,14 +404,15 @@ public class Menu {
         System.out.println("Informe a taxa de entrega:");
         int taxadeEntrega = leitor.nextInt();
         leitor.nextLine();
-        
+
         System.out.println("Informe o status do pedido:");
         String status = leitor.nextLine();
 
         System.out.println("Adicione observacoes sobre o pedido:");
         String observacoes = leitor.nextLine();
 
-        var pedidoToAdd = new Pedido(novoId, novoProduto, novoCliente, metododePagamento, taxadeEntrega, status, observacoes);
+        var pedidoToAdd = new Pedido(novoId, novoProduto, novoCliente, metododePagamento, taxadeEntrega, status,
+                observacoes);
         return pedidoToAdd;
 
     }
