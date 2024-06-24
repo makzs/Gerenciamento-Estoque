@@ -107,8 +107,6 @@ public class EnderecoController {
             FileWriter ClienteBDgravar = new FileWriter(enderecoDB, true);
             PrintWriter gravador = new PrintWriter(ClienteBDgravar);
 
-            gravador.println("Id | rua | numero | complemento | cidade | estado | cep | ClienteId | FornecedorId |");
-
             for (Endereco e : listaEnderecos) {
                 String linhaCSV = e.toCSV();
                 gravador.println(linhaCSV);
